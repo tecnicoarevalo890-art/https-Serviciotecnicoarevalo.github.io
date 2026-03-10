@@ -111,13 +111,17 @@ box-shadow:0 4px 10px rgba(0,0,0,0.3);
 .boton-yape{
 background:#6f2cff;
 color:white;
-padding:12px 25px;
-text-decoration:none;
+padding:15px 30px;
+border:none;
 border-radius:8px;
-font-size:16px;
+font-size:18px;
 font-weight:bold;
-display:inline-block;
-margin:10px;
+cursor:pointer;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+
+.boton-yape:hover{
+background:#5a20d8;
 }
   
 .facebook{
@@ -246,13 +250,28 @@ background:#218838;
 Escríbenos por WhatsApp
 </a>
   
+<button onclick="mostrarYape()" class="boton-yape">
+💜 Pagar con Yape
+</button>
+
+<div id="yape" style="display:none; text-align:center; margin-top:20px;">
+
 <h3>Pagar con Yape</h3>
 
-<img src="qr-yape.png" width="500">
+<img src="qr-yape.png" width="220">
 
-<p>Escanea el QR para pagar con Yape</p>
-</section>
+<p>Escanea el QR para pagar</p>
 
+  <script>
+
+function mostrarYape(){
+document.getElementById("yape").style.display="block";
+}
+
+</script>
+  
+</div>
+  
 <footer>
 
 <p>Servicio Técnico Arévalo © 2026</p>
@@ -328,6 +347,7 @@ Comprar
 </body>
   
 </html>
+
 
 
 
