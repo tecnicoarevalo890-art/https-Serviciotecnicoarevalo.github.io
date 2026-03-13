@@ -260,24 +260,6 @@ background:#218838;
 Escríbenos por WhatsApp
 </a>
   
-<button onclick="mostrarYape()" class="boton-yape">
-💜 Pagar con Yape
-</button>
-
-<div id="yape" style="display:none; text-align:center; margin-top:20px;">
-
-<h3>Pagar con Yape</h3>
-
-<img src="http://techfixlatam.com/wp-content/uploads/2026/03/qr-arevalo.jpg" width="250">
-
-<p>Escanea el QR para pagar</p>
-
-  <script>
-
-function mostrarYape(){
-document.getElementById("yape").style.display="block";
-}
-
 </script>
   
 </div>
@@ -297,7 +279,26 @@ Visítanos en Facebook
 </a>
   
  <p>Todos los programas están subidos para facilitar el trabajo de técnicos y usuarios.</p>
-  
+
+<div id="bloqueo" style="position:fixed; top:0; left:0; width:100%; height:100%; background:white; text-align:center; padding-top:100px; z-index:9999;">
+
+<h2>🔒 Descargas bloqueadas</h2>
+
+<p>Para descargar los programas primero debes realizar el pago.</p>
+
+<h3>💜 Paga con Yape</h3>
+
+<img src="http://techfixlatam.com/wp-content/uploads/2026/03/qr-arevalo.jpg" width="250">
+
+<p>Después del pago presiona el botón para desbloquear.</p>
+
+<button onclick="desbloquear()" style="padding:15px 25px; font-size:18px; background:#6f2cff; color:white; border:none; border-radius:8px;">
+Ya pagué - Desbloquear descargas
+</button>
+
+</div>  
+
+
   <h2>📥 Descargas de Sistemas Operativos</h2>
 
 <a href="https://www.mediafire.com/file/pavdmi9y0io6k7b" class="boton-descarga" target="_blank">
@@ -549,9 +550,18 @@ Comprar
 
 <script src="//code.tidio.co/gduoml8vjji4sxcgewinrvp6rhi0xmd7.js" async></script>
 
+<script>
+
+function desbloquear(){
+document.getElementById("bloqueo").style.display="none";
+}
+
+</script>
+  
 </body>
   
 </html>
+
 
 
 
