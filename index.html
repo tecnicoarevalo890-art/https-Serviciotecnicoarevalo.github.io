@@ -280,25 +280,25 @@ Visítanos en Facebook
   
  <p>Todos los programas están subidos para facilitar el trabajo de técnicos y usuarios.</p>
 
-<div id="bloqueo" style="position:fixed; top:0; left:0; width:100%; height:100%; background:white; text-align:center; padding-top:100px; z-index:9999;">
+<div id="pantallaPago" style="position:fixed;top:0;left:0;width:100%;height:100%;background:white;text-align:center;padding-top:80px;z-index:9999;">
 
-<h2>🔒 Descargas bloqueadas</h2>
+<h2>🔒 Descargas Premium</h2>
 
-<p>Para descargar los programas primero debes realizar el pago.</p>
+<p>Para descargar los programas debes realizar un pago.</p>
 
-<h3>💜 Paga con Yape</h3>
+<h3>💜 Pago único S/10 con Yape</h3>
 
-<img src="http://techfixlatam.com/wp-content/uploads/2026/03/qr-arevalo.jpg" width="250">
+<img src="http://techfixlatam.com/wp-content/uploads/2026/03/qr-arevalo.jpg" width="260">
 
-<p>Después del pago presiona el botón para desbloquear.</p>
+<p>Escanea el QR y luego presiona el botón</p>
 
-<button onclick="desbloquear()" style="padding:15px 25px; font-size:18px; background:#6f2cff; color:white; border:none; border-radius:8px;">
+<button onclick="desbloquearDescargas()" style="padding:15px 30px;background:#6f2cff;color:white;border:none;border-radius:8px;font-size:18px;">
 Ya pagué - Desbloquear descargas
 </button>
 
-</div>  
+</div>
 
-
+  
   <h2>📥 Descargas de Sistemas Operativos</h2>
 
 <a href="https://www.mediafire.com/file/pavdmi9y0io6k7b" class="boton-descarga" target="_blank">
@@ -552,15 +552,34 @@ Comprar
 
 <script>
 
-function desbloquear(){
-document.getElementById("bloqueo").style.display="none";
+  
+<script>
+
+function desbloquearDescargas(){
+
+document.getElementById("pantallaPago").style.display="none";
+
+localStorage.setItem("pagoRealizado","si");
+
+}
+
+window.onload=function(){
+
+if(localStorage.getItem("pagoRealizado")=="si"){
+
+document.getElementById("pantallaPago").style.display="none";
+
+}
+
 }
 
 </script>
+
   
 </body>
   
 </html>
+
 
 
 
