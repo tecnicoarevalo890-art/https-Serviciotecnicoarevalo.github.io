@@ -280,23 +280,42 @@ Visítanos en Facebook
   
  <p>Todos los programas están subidos para facilitar el trabajo de técnicos y usuarios.</p>
 
-<div id="pantallaPago" style="position:fixed;top:0;left:0;width:100%;height:100%;background:white;text-align:center;padding-top:80px;z-index:9999;">
+<a href="https://wa.me/51966869638?text=Hola%20quiero%20pagar%20para%20descargar%20los%20programas" 
+class="boton-compra">
+💜 Pagar con Yape
+<img src="http://techfixlatam.com/wp-content/uploads/2026/03/qr-arevalo.jpg" width="250">
+  
+</a>
+  
+<h2>Descargas Premium</h2>
 
-<h2>🔒 Descargas Premium</h2>
+<input type="password" id="clave" placeholder="Ingrese la clave de descarga"> 
 
-<p>Para descargar los programas debes realizar un pago.</p>
+<button onclick="verificar()">Desbloquear</button>
 
-<h3>💜 Pago único S/10 con Yape</h3>
+<div id="descargas" style="display:none;">
 
-<img src="http://techfixlatam.com/wp-content/uploads/2026/03/qr-arevalo.jpg" width="260">
-
-<p>Escanea el QR y luego presiona el botón</p>
-
-<button onclick="desbloquearDescargas()" style="padding:15px 30px;background:#6f2cff;color:white;border:none;border-radius:8px;font-size:18px;">
-Ya pagué - Desbloquear descargas
-</button>
+<a href="LINK-DE-TU-ARCHIVO" class="boton-descarga">
+Descargar Programa
+</a>
 
 </div>
+
+<script>
+
+function verificar(){
+
+var clave = document.getElementById("clave").value;
+
+if(clave=="SERVICIOTECNICOAREVALO2026@@"){
+document.getElementById("descargas").style.display="block";
+}else{
+alert("Clave incorrecta");
+}
+
+}
+
+</script>
 
   
   <h2>📥 Descargas de Sistemas Operativos</h2>
@@ -579,6 +598,7 @@ document.getElementById("pantallaPago").style.display="none";
 </body>
   
 </html>
+
 
 
 
