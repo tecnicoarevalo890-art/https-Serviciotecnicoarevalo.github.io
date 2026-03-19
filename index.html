@@ -161,15 +161,12 @@ margin:10px;
 box-shadow:0 4px 8px rgba(0,0,0,0.2);
 }
 
-/* PRODUCTOS */
 .card{
-background:#fff;
-margin:10px;
+border:1px solid #ddd;
 padding:15px;
+margin:10px;
 border-radius:10px;
-box-shadow:0 5px 10px rgba(0,0,0,0.2);
-display:inline-block;
-width:200px;
+box-shadow:0 5px 10px rgba(0,0,0,0.1);
 }
 
 button{
@@ -183,14 +180,6 @@ cursor:pointer;
 
 button:hover{
 background:#218838;
-}
-
-/* CARRITO */
-#carrito{
-background:#fff;
-margin:20px;
-padding:15px;
-border-radius:10px;
 }
   
 </style>
@@ -795,23 +784,13 @@ Comprar
 <button onclick="agregar('W10P DR Lite 2.7 Final x86',10)">Agregar al carrito</button>
 </div>  
 
-<!-- CARRITO -->
-<div id="carrito" style="display:none;">
-
 <h2>🛒 Carrito</h2>
+
 <ul id="lista"></ul>
 
 <p><b>Total: S/<span id="total">0</span></b></p>
 
-<button onclick="comprar()">📲 Comprar</button>
-
-<br><br>
-
-<a href="https://wa.me/51966869638?text=Hola%20quiero%20pagar%20por%20Yape" target="_blank">
-<button>💰 Pagar con Yape</button>
-</a>
-
-</div>
+<button onclick="enviarWhatsApp()">Comprar por WhatsApp</button>
 
     <h3>👥 Visitas a nuestra página</h3>
 
@@ -846,7 +825,47 @@ document.getElementById("pantallaPago").style.display="none";
 }
 
 </script>
-      
+    
+<script>
+
+let carrito = [];
+let total = 0;
+
+function agregar(nombre, precio){
+carrito.push({nombre, precio});
+total += precio;
+mostrar();
+}
+
+function mostrar(){
+let lista = document.getElementById("lista");
+lista.innerHTML = "";
+
+carrito.forEach(item => {
+let li = document.createElement("li");
+li.textContent = item.nombre + " - S/" + item.precio;
+lista.appendChild(li);
+});
+
+document.getElementById("total").textContent = total;
+}
+
+function enviarWhatsApp(){
+
+let mensaje = "Hola, quiero comprar:%0A";
+
+carrito.forEach(item => {
+mensaje += "- " + item.nombre + " S/" + item.precio + "%0A";
+});
+
+mensaje += "%0ATotal: S/" + total;
+
+window.open("https://wa.me/51966869638?text=" + mensaje, "_blank");
+
+}
+
+</script> 
+    
 </body>
   
 </html>
