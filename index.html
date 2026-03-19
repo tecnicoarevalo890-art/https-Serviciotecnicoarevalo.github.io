@@ -761,17 +761,6 @@ alert("Clave incorrecta");
   
   <script>
     
-function comprar(){
-
-let mensaje="Hola quiero comprar:%0A";
-
-carrito.forEach(item=>{
-mensaje += "- "+item.nombre+" S/"+item.precio+"%0A";
-});
-
-window.open("https://wa.me/51966869638?text="+mensaje);
-
-</script>
 
     <h3>👥 Visitas a nuestra página</h3>
 
@@ -863,8 +852,21 @@ document.getElementById("total").innerText = total;
 
 /* CARGAR */
 window.onload = mostrar;
-  
 
+  
+function comprar(){
+
+let mensaje="Hola quiero comprar:%0A";
+
+carrito.forEach(item=>{
+mensaje += "- "+item.nombre+" S/"+item.precio+"%0A";
+});
+
+window.open("https://wa.me/51966869638?text="+mensaje);
+
+</script>
+
+  
 </script>
 
 
