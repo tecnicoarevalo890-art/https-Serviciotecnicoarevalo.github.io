@@ -758,30 +758,18 @@ alert("Clave incorrecta");
 <button onclick="vaciar()">Vaciar carrito</button>
   
 <button onclick="comprar()">📲 Comprar por WhatsApp</button>
+  
   <script>
-
+    
 function comprar(){
 
-let mensaje = "Hola, quiero comprar:%0A";
+let mensaje="Hola quiero comprar:%0A";
 
-// ejemplo de productos
-mensaje += "- Windows 10 S/10%0A";
-mensaje += "- Office 2021 S/10%0A";
-mensaje += "- Windows 11 S/15%0A";
-mensaje += "- Office 365 S/15%0A";
-mensaje += "- Windows 8.1 S/10%0A";
-mensaje += "- Windows 7 ultimate S/10%0A";
-mensaje += "- MiniOS10 XP 2026 S/10%0A";
-mensaje += "- Office 2024 S/8%0A";
-mensaje += "- M1N1OS7 PR0 V26 S/10%0A";
-mensaje += "- office 2019 S/10%0A";
-mensaje += "- W10P DR Lite 2.7 Final x86 062022 S10/%0A";
-mensaje += "- W10P DR Lite 2.7 Final x64 062022 S10/%0A";
-mensaje += "- TODOS LOS OFFICES E ACTIVACIÓN S/20%0A";
-  
-window.open("https://wa.me/51966869638?text=" + mensaje, "_blank");
+carrito.forEach(item=>{
+mensaje += "- "+item.nombre+" S/"+item.precio+"%0A";
+});
 
-}
+window.open("https://wa.me/51966869638?text="+mensaje);
 
 </script>
 
