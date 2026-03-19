@@ -181,7 +181,24 @@ cursor:pointer;
 button:hover{
 background:#218838;
 }
-  
+
+button{
+border:none;
+padding:8px;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+opacity:0.8;
+}
+
+function vaciar(){
+carrito = [];
+guardar();
+mostrar();
+}
+
 </style>
 
   
@@ -735,6 +752,9 @@ alert("Clave incorrecta");
 
 <button onclick="enviarWhatsApp()">Comprar por WhatsApp</button>
 
+<button onclick="vaciar()">🗑 Vaciar carrito</button>
+
+  
     <h3>👥 Visitas a nuestra página</h3>
 
 <img src="https://hitwebcounter.com/counter/counter.php?page=20000000&style=0006&nbdigits=6&type=page&initCount=0" />
