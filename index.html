@@ -161,19 +161,15 @@ margin:10px;
 box-shadow:0 4px 8px rgba(0,0,0,0.2);
 }
 
-.boton-compra:hover{
-background:#e65c00;
-}
-.boton-descarga:hover{
-background:#218838;
-}
-
+/* PRODUCTOS */
 .card{
-border:1px solid #ddd;
-padding:15px;
+background:#fff;
 margin:10px;
+padding:15px;
 border-radius:10px;
-box-shadow:0 5px 10px rgba(0,0,0,0.1);
+box-shadow:0 5px 10px rgba(0,0,0,0.2);
+display:inline-block;
+width:200px;
 }
 
 button{
@@ -187,6 +183,15 @@ cursor:pointer;
 
 button:hover{
 background:#218838;
+}
+
+/* CARRITO */
+#carrito{
+background:#fff;
+margin:20px;
+padding:15px;
+border-radius:10px;
+}
 }  
   
 </style>
@@ -739,7 +744,10 @@ Comprar
 </div> 
   
   <div style="background:#111;color:white;padding:15px;border-radius:8px;width:220px;text-align:center;">
-  
+
+<!-- PRODUCTOS -->
+    
+<div id="tienda" style="display:none;">    
 <div class="card">
 <h3>Windows 10 todos las versiones</h3>
 <p>S/10</p>
@@ -755,47 +763,61 @@ Comprar
 <div class="card">
 <h3>Windows 7 ultimate</h3>
 <p>S/10</p>
-<button onclick="agregar('Windows 11',15)">Agregar al carrito</button>
+<button onclick="agregar('Windows 7 ultimate',10)">Agregar al carrito</button>
 </div>       
     
 <div class="card">
 <h3>Windows 8.1</h3>
 <p>S/10</p>
-<button onclick="agregar('Windows 11',15)">Agregar al carrito</button>
+<button onclick="agregar('Windows 8.1',10)">Agregar al carrito</button>
 </div>     
     
 <div class="card">
 <h3>MiniOS10 XP 2026</h3>
 <p>S/10</p>
-<button onclick="agregar('Windows 11',15)">Agregar al carrito</button>
+<button onclick="agregar('MINIOS10 XP 2026',10)">Agregar al carrito</button>
 </div>     
     
 <div class="card">
 <h3>M1N1OS7 PR0 V26</h3>
 <p>S/10</p>
-<button onclick="agregar('Windows 11',15)">Agregar al carrito</button>
+<button onclick="agregar('MINIOS7 PRO V26',10)">Agregar al carrito</button>
 </div>  
 
 <div class="card">
 <h3>W10P DR Lite 2.7 Final x64 062022</h3>
 <p>S/10</p>
-<button onclick="agregar('Windows 11',15)">Agregar al carrito</button>
+<button onclick="agregar('W10P DR Lite 2.7 Final x64',10)">Agregar al carrito</button>
 </div>  
 
 <div class="card">
-<h3>W10P DR Lite 2.7 Final x64 062022</h3>
+<h3>W10P DR Lite 2.7 Final x86 062022</h3>
 <p>S/10</p>
-<button onclick="agregar('Windows 11',15)">Agregar al carrito</button>
+<button onclick="agregar('W10P DR Lite 2.7 Final x86',10)">Agregar al carrito</button>
 </div>  
+
+<!-- CARRITO -->
+<div id="carrito" style="display:none;">
 
 <h2>🛒 Carrito</h2>
-
 <ul id="lista"></ul>
 
 <p><b>Total: S/<span id="total">0</span></b></p>
 
-<button onclick="enviarWhatsApp()">Comprar por WhatsApp</button>
+<button onclick="comprar()">📲 Comprar</button>
+
+<br><br>
+
+<a href="https://wa.me/51966869638?text=Hola%20quiero%20pagar%20por%20Yape" target="_blank">
+<button>💰 Pagar con Yape</button>
+</a>
+
+</div>
+
+" <button onclick='eliminar("+i+")'>❌</button>";
+
     
+
     <h3>👥 Visitas a nuestra página</h3>
 
 <img src="https://hitwebcounter.com/counter/counter.php?page=20000000&style=0006&nbdigits=6&type=page&initCount=0" />
@@ -829,47 +851,8 @@ document.getElementById("pantallaPago").style.display="none";
 }
 
 </script>
-  
- <script>
 
-let carrito = [];
-let total = 0;
-
-function agregar(nombre, precio){
-carrito.push({nombre, precio});
-total += precio;
-mostrar();
-}
-
-function mostrar(){
-let lista = document.getElementById("lista");
-lista.innerHTML = "";
-
-carrito.forEach(item => {
-let li = document.createElement("li");
-li.textContent = item.nombre + " - S/" + item.precio;
-lista.appendChild(li);
-});
-
-document.getElementById("total").textContent = total;
-}
-
-function enviarWhatsApp(){
-
-let mensaje = "Hola, quiero comprar:%0A";
-
-carrito.forEach(item => {
-mensaje += "- " + item.nombre + " S/" + item.precio + "%0A";
-});
-
-mensaje += "%0ATotal: S/" + total;
-
-window.open("https://wa.me/51966869638?text=" + mensaje, "_blank");
-
-}
-
-</script>
-  
+    
 </body>
   
 </html>
