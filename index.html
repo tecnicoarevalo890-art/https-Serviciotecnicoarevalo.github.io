@@ -753,14 +753,11 @@ alert("Clave incorrecta");
 <h2>🛒 Carrito</h2>
 
 <ul id="lista"></ul>
+<span id="total">0</span>
 
-<p><b>Total: S/<span id="total">0</span></b></p>
-
-<button onclick="vaciar(todo)">🗑 Vaciar carrito</button>
-<button onclick="eliminar(1)">❌</button>
+<button onclick="vaciar()">Vaciar carrito</button>
   
 <button onclick="enviarWhatsApp()">Comprar por WhatsApp</button>
-
 
     <h3>👥 Visitas a nuestra página</h3>
 
@@ -795,41 +792,66 @@ document.getElementById("pantallaPago").style.display="none";
     
 <script>
 
-let carrito = [];
-let total = 0;
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
+/* AGREGAR */
 function agregar(nombre, precio){
 carrito.push({nombre, precio});
-total += precio;
+guardar();
 mostrar();
 }
 
+/* ELIMINAR UNO */
+function eliminar(index){
+carrito.splice(index,1);
+guardar();
+mostrar();
+}
+
+/* VACIAR TODO */
+function vaciar(){
+carrito = [];
+guardar();
+mostrar();
+}
+
+/* GUARDAR */
+function guardar(){
+localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
+/* MOSTRAR */
 function mostrar(){
+
 let lista = document.getElementById("lista");
 lista.innerHTML = "";
 
-carrito.forEach(item => {
+let total = 0;
+
+carrito.forEach((item, index)=>{
+
+total += item.precio;
+
 let li = document.createElement("li");
-li.textContent = item.nombre + " - S/" + item.precio;
+
+li.innerHTML = `
+${item.nombre} - S/${item.precio} 
+<button onclick="eliminar(${index})" style="background:red;">❌</button>
+`;
+
 lista.appendChild(li);
+
 });
 
-document.getElementById("total").textContent = total;
-}
-
-function enviarWhatsApp(){
-
-let mensaje = "Hola, quiero comprar:%0A";
-
-carrito.forEach(item => {
-mensaje += "- " + item.nombre + " S/" + item.precio + "%0A";
-});
-
-mensaje += "%0ATotal: S/" + total;
-
-window.open("https://wa.me/51966869638?text=" + mensaje, "_blank");
+document.getElementById("total").innerText = total;
 
 }
+
+/* CARGAR */
+window.onload = mostrar;
+
+</script>
+
 
 </script> 
     
