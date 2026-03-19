@@ -193,6 +193,12 @@ button:hover{
 opacity:0.8;
 }
 
+function eliminar(i){
+carrito.splice(i,1);
+guardar();
+mostrar();
+}
+  
 function vaciar(){
 carrito = [];
 guardar();
@@ -754,6 +760,30 @@ alert("Clave incorrecta");
 
 <button onclick="vaciar()">🗑 Vaciar carrito</button>
 
+function mostrar(){
+
+let lista = document.getElementById("lista");
+lista.innerHTML="";
+let total=0;
+
+carrito.forEach((item,i)=>{
+
+total += item.precio;
+
+let li = document.createElement("li");
+
+li.innerHTML = `
+${item.nombre} - S/${item.precio} 
+<button onclick="eliminar(${i})" style="background:red; margin-left:10px;">❌</button>
+`;
+
+lista.appendChild(li);
+
+});
+
+document.getElementById("total").innerText = total;
+
+}
   
     <h3>👥 Visitas a nuestra página</h3>
 
