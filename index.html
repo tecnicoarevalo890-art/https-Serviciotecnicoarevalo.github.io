@@ -205,16 +205,24 @@ guardar();
 mostrar();
 }
 
-#carrito, #carrito p, #carrito span {
-color: black !important;
-font-weight: bold;
+.descripcion{
+font-size:14px;
+color:#555;
+margin:10px 0;
 }
 
-#total {
-color: #28a745; /* verde tipo dinero */
-font-size: 24px;
-font-weight: bold;
-}  
+.beneficios{
+text-align:left;
+font-size:13px;
+color:#333;
+padding-left:15px;
+}
+
+.precio{
+font-size:20px;
+font-weight:bold;
+color:#28a745;
+}
   
 </style>
 
@@ -697,7 +705,18 @@ alert("Clave incorrecta");
     
 <div class="card">
 <h3>Windows 11 PRO 25H2 </h3>
-<p>S/15</p>
+  
+<p class="descripcion">
+Sistema operativo moderno con mejor rendimiento, seguridad avanzada y diseño elegante. Ideal para equipos nuevos.
+</p>
+
+<ul class="beneficios">
+<li>✔ Más rápido</li>
+<li>✔ Mejor seguridad</li>
+<li>✔ Compatible con apps nuevas</li>
+</ul>
+
+<p class="precio">S/15</p>
 <button onclick="agregar('Windows 11',15)">Agregar al carrito</button>
 </div>    
 
