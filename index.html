@@ -382,12 +382,6 @@ color:white;
 
 <div class="likes">
 
-<button onclick="like()">👍 Me gusta</button>
-<span id="likes">0</span>
-
-<button onclick="dislike()">👎 No me gusta</button>
-<span id="dislikes">0</span>
-
 </div>
   
 <section id="contacto" class="contacto">
@@ -5464,7 +5458,6 @@ window.onload = mostrar;
 
 <script>
 
-<!-- FIREBASE -->
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
 
@@ -5480,29 +5473,34 @@ const firebaseConfig = {
   appId: "1:761348386236:web:384d6e116aebadbc968fb9"
 };
 
-// INICIAR
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-// MOSTRAR DATOS
+// VER DATOS
 db.ref("votos").on("value", (snapshot) => {
-let data = snapshot.val() || {};
-document.getElementById("likes").innerText = data.likes || 0;
-document.getElementById("dislikes").innerText = data.dislikes || 0;
+  let data = snapshot.val() || {};
+  document.getElementById("likes").innerText = data.likes || 0;
+  document.getElementById("dislikes").innerText = data.dislikes || 0;
 });
 
 // BOTONES
 function like(){
-db.ref("votos/likes").transaction(n => (n || 0) + 1);
+  db.ref("votos/likes").set((Math.floor(Math.random()*1))+1);
 }
 
 function dislike(){
-db.ref("votos/dislikes").transaction(n => (n || 0) + 1);
+  db.ref("votos/dislikes").set((Math.floor(Math.random()*1))+1);
 }
 
 </script>
  
 </body>
+  
+  <button onclick="like()">👍 Me gusta</button>
+<span id="likes">0</span>
+
+<button onclick="dislike()">👎 No me gusta</button>
+<span id="dislikes">0</span>
   
 </html>
 
