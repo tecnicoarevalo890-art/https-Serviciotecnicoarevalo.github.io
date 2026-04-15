@@ -300,6 +300,13 @@ background:#25D366;
 color:white;
 }
 
+{
+  "votos": {
+    "likes": 1,
+    "dislikes": 0
+  }
+}
+
 </style>
 
   
@@ -380,6 +387,16 @@ color:white;
 
 </section>
 
+<div class="likes">
+
+<button onclick="like()">👍 Me gusta</button>
+<span id="likes">0</span>
+
+<button onclick="dislike()">👎 No me gusta</button>
+<span id="dislikes">0</span>
+
+</div>
+  
 <section id="contacto" class="contacto">
 
 <h2>Contacto</h2>
@@ -5453,7 +5470,45 @@ window.onload = mostrar;
   <script src="//code.tidio.co/gduoml8vjji4sxcgewinrvp6rhi0xmd7.js" async></script>
 
 <script>
-  
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+
+<script>
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAbbHQGhXsuJIskFHxMsOufU05__XDYJCk",
+  authDomain: "servicio-tecnico-arevalo.firebaseapp.com",
+  databaseURL: "https://servicio-tecnico-arevalo-default-rtdb.firebaseio.com",
+  projectId: "servicio-tecnico-arevalo",
+  storageBucket: "servicio-tecnico-arevalo.appspot.com",
+  messagingSenderId: "761348386236",
+  appId: "1:761348386236:web:384d6e116aebadbc968fb9"
+};
+
+// INICIAR
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+// MOSTRAR DATOS
+db.ref("votos").on("value", (snapshot) => {
+let data = snapshot.val() || {};
+document.getElementById("likes").innerText = data.likes || 0;
+document.getElementById("dislikes").innerText = data.dislikes || 0;
+});
+
+// BOTONES
+function like(){
+db.ref("votos/likes").transaction(n => (n || 0) + 1);
+}
+
+function dislike(){
+db.ref("votos/dislikes").transaction(n => (n || 0) + 1);
+}
+
+</script>
+ 
 </body>
   
 </html>
