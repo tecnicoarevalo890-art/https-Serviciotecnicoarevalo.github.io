@@ -5485,17 +5485,17 @@ db.ref("votos").on("value", (snapshot) => {
 
 // BOTONES
 function like(){
-  db.ref("votos/likes").set((Math.floor(Math.random()*1))+1);
+  db.ref("votos/likes").set(1);
 }
 
 function dislike(){
-  db.ref("votos/dislikes").set((Math.floor(Math.random()*1))+1);
+   db.ref("votos/dislikes").set(1);
 }
-
 databaseURL: "https://servicio-tecnico-arevalo-default-rtdb.firebaseio.com",
 
 </script>
-  
+
+
 </body>
   
   <button onclick="like()">👍 Me gusta</button>
