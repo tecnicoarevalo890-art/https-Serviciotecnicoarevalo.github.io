@@ -300,6 +300,72 @@ background:#25D366;
 color:white;
 }
 
+.tienda{
+padding:30px;
+background:#0f0f0f;
+}
+
+.tienda h2{
+text-align:center;
+color:#00ffcc;
+margin-bottom:20px;
+}
+
+.grid-tienda{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+}
+
+.producto{
+background:#1a1a1a;
+width:250px;
+border-radius:15px;
+padding:10px;
+text-align:center;
+transition:0.3s;
+}
+
+.producto:hover{
+transform:scale(1.05);
+box-shadow:0 0 15px #00ffcc;
+}
+
+.producto img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.producto span{
+display:block;
+color:#00ff88;
+font-size:18px;
+margin:10px 0;
+font-weight:bold;
+}
+
+.producto button{
+margin:5px;
+padding:10px;
+width:90%;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+.producto button:first-of-type{
+background:#28a745;
+color:white;
+}
+
+.comprar{
+background:#25D366;
+color:white;
+}
+
 </style>
 
   
@@ -1290,11 +1356,61 @@ alert("Clave incorrecta");
 
 <div>
 
+<div class="tienda">
+
+<h2>🛒 Artículos en Venta</h2>
+
+<div class="grid-tienda">
+
+<!-- PRODUCTO -->
+<div class="producto">
+<img src="https://cdn.pixabay.com/photo/2015/01/21/14/14/apple-606761_1280.jpg">
+<h3>Laptop Core i5</h3>
+<p>Equipo ideal para trabajo y estudio</p>
+<span>S/1200</span>
+
+<button onclick="agregar('Laptop Core i5',1200)">🛒 Agregar</button>
+
+<a href="https://wa.me/51966869638?text=Quiero%20comprar%20Laptop">
+<button class="comprar">💬 Comprar</button>
+</a>
+
+</div>
+
+<!-- PRODUCTO -->
+<div class="producto">
+<img src="https://cdn.pixabay.com/photo/2014/04/03/10/32/computer-310990_1280.png">
+<h3>Mouse Gamer</h3>
+<p>Alta precisión RGB</p>
+<span>S/50</span>
+
+<button onclick="agregar('Mouse Gamer',50)">🛒 Agregar</button>
+
+<a href="https://wa.me/51966869638?text=Quiero%20comprar%20Mouse">
+<button class="comprar">💬 Comprar</button>
+</a>
+
+</div>
+
+<!-- PRODUCTO -->
+<div class="producto">
+<img src="https://cdn.pixabay.com/photo/2016/03/27/07/08/keyboard-1280178_1280.jpg">
+<h3>Teclado Mecánico</h3>
+<p>Ideal para gaming y trabajo</p>
+<span>S/120</span>
+
+<button onclick="agregar('Teclado Mecánico',120)">🛒 Agregar</button>
+
+<a href="https://wa.me/51966869638?text=Quiero%20comprar%20Teclado">
+<button class="comprar">💬 Comprar</button>
+</a>
+
+  
 <div class="card">
   
 <img src="https://programafullpc.com/wp-content/uploads/2024/08/Windows-10-AIO-Todo-En-Uno.webp" width="120">
 
-<h3>Windows 10 todos las versiones</h3>
+<h3>Windows 10 Todo En Uno</h3>
 
 <p class="descripcion">
 Instala cualquier edición con paquete completo y versátil con todas las versiones en un solo instalador actualizado.
@@ -1343,7 +1459,7 @@ Servidores: Mediafire
 </ul>
 
 <p class="precio">S/10</p> 
-<button onclick="agregar('Windows 10',10)">Agregar al carrito</button>
+<button onclick="agregar('Windows 10',15)">Agregar al carrito</button>
 </div>
     
 <div class="card">
@@ -5414,7 +5530,7 @@ Tarjeta Gráfica: 256 MB
 <p class="precio">S/20</p>  
 <button onclick="agregar('Euro Truck Simulator 2',20)">Agregar al carrito</button>
 </div>
-
+  
 <h2>🛒 Carrito</h2>
 
 <ul id="lista"></ul>
