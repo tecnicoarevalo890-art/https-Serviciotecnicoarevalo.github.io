@@ -6501,17 +6501,13 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const db = firebase.database();
-
-// CONTADOR
 const visitasRef = db.ref("visitas");
 
-// MOSTRAR VISITAS
 visitasRef.on("value", (snapshot)=>{
   document.getElementById("contador").innerText =
   snapshot.val() || 0;
 });
 
-// CONTAR SOLO 1 VEZ
 if(!localStorage.getItem("visitante")){
 
   visitasRef.once("value").then((snap)=>{
