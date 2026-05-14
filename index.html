@@ -6462,32 +6462,23 @@ window.onload = mostrar;
 const firebaseConfig = {
   apiKey: "AIzaSyAbbHQGhXsuJIskFHxMsOufU05__XDYJCk",
   authDomain: "servicio-tecnico-arevalo.firebaseapp.com",
+
   databaseURL: "https://servicio-tecnico-arevalo-default-rtdb.firebaseio.com",
+
   projectId: "servicio-tecnico-arevalo",
+
   storageBucket: "servicio-tecnico-arevalo.appspot.com",
+
   messagingSenderId: "761348386236",
+
   appId: "1:761348386236:web:384d6e116aebadbc968fb9"
 };
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
-
-// VER DATOS
-db.ref("votos").on("value", (snapshot) => {
-  let data = snapshot.val() || {};
-  document.getElementById("likes").innerText = data.likes || 0;
-  document.getElementById("dislikes").innerText = data.dislikes || 0;
-});
-
-// BOTONES
-function like(){
-  db.ref("votos/likes").set(1);
-}
-
-function dislike(){
-   db.ref("votos/dislikes").set(1);
-}
 databaseURL: "https://servicio-tecnico-arevalo-default-rtdb.firebaseio.com",
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.database();
 
 </body> 
 
