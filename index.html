@@ -8754,5 +8754,119 @@ gtag('config','G-JN1PLW9E98');
 })();
 </script>
 
+
+<!-- ===== ESTADISTICAS Y PIE DE PAGINA - SERVICIO TECNICO AREVALO ===== -->
+<style>
+/* Bloque inspirado en el estilo de la referencia, adaptado a Servicio Técnico Arevalo */
+.arevalo-estadisticas-wrap{max-width:1180px;margin:38px auto 22px;padding:0 18px;box-sizing:border-box}
+.arevalo-estadisticas{background:#fff;border-radius:2px;padding:28px 24px 26px;box-shadow:0 4px 18px rgba(0,0,0,.10)}
+.arevalo-estadisticas h2{text-align:center;margin:0 0 25px;font-size:30px;color:#111;font-weight:800}
+.arevalo-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.arevalo-stat{background:#050505;border-radius:13px;padding:20px;color:#fff;min-height:128px;box-sizing:border-box;box-shadow:0 5px 12px rgba(0,0,0,.18)}
+.arevalo-stat small{display:block;color:#d6d6d6;font-size:12px;font-weight:800;letter-spacing:.8px;text-transform:uppercase}
+.arevalo-stat strong{display:block;font-size:43px;line-height:1;margin:8px 0 5px;color:#fff}
+.arevalo-stat span{display:block;color:#aaa;font-size:13px;margin-bottom:13px}
+.arevalo-bar{height:5px;background:#292929;border-radius:10px;overflow:hidden}
+.arevalo-bar i{display:block;height:100%;width:0;background:#ff1010;border-radius:10px;transition:width .7s ease}
+.arevalo-footer-wrap{max-width:1180px;margin:0 auto 0;padding:0 18px;box-sizing:border-box}
+.arevalo-footer{background:#fff;padding:42px 34px 38px;display:grid;grid-template-columns:repeat(3,1fr);gap:30px;box-shadow:0 4px 18px rgba(0,0,0,.10)}
+.arevalo-foot-col{background:#fff;border-radius:5px;padding:20px 18px;text-align:center;box-shadow:0 2px 9px rgba(0,0,0,.10)}
+.arevalo-foot-title{background:linear-gradient(135deg,#050505,#171717);color:#fff;border-bottom:3px solid #e00000;padding:10px 8px;border-radius:9px 9px 5px 5px;font-size:20px;margin:-2px 0 17px;box-shadow:0 3px 5px rgba(0,0,0,.25)}
+.arevalo-foot-col p{font-size:16px;line-height:1.55;color:#222;margin:8px 0}
+.arevalo-foot-col a{display:block;color:#c40000;text-decoration:none;font-size:16px;margin:10px 0;font-weight:600}
+.arevalo-foot-col a:hover{text-decoration:underline;color:#8f0000}
+.arevalo-contact-btn{display:inline-block!important;background:#c40000!important;color:#fff!important;padding:10px 14px;border-radius:8px;margin-top:12px!important}
+.arevalo-copyright{max-width:1180px;margin:0 auto;padding:20px 18px 25px;text-align:center;color:#fff;font-size:15px;box-sizing:border-box}
+@media(max-width:900px){.arevalo-stats-grid{grid-template-columns:repeat(2,1fr)}.arevalo-footer{grid-template-columns:1fr}}
+@media(max-width:560px){.arevalo-estadisticas-wrap,.arevalo-footer-wrap{padding:0 10px}.arevalo-estadisticas{padding:22px 14px}.arevalo-estadisticas h2{font-size:24px}.arevalo-stats-grid{grid-template-columns:1fr;gap:12px}.arevalo-stat strong{font-size:38px}.arevalo-footer{padding:25px 15px}.arevalo-foot-title{font-size:18px}}
+</style>
+
+<section class="arevalo-estadisticas-wrap" aria-label="Estadísticas del sitio">
+  <div class="arevalo-estadisticas">
+    <h2>📊 Estadísticas del Sitio</h2>
+    <div class="arevalo-stats-grid">
+      <div class="arevalo-stat">
+        <small>Total contenido</small>
+        <strong id="arevaloTotalContenido">0</strong>
+        <span>Contenido publicado</span>
+        <div class="arevalo-bar"><i id="arevaloBarTotal"></i></div>
+      </div>
+      <div class="arevalo-stat">
+        <small>Programas</small>
+        <strong id="arevaloTotalProgramas">0</strong>
+        <span id="arevaloPorcentajeProgramas">Contenido disponible</span>
+        <div class="arevalo-bar"><i id="arevaloBarProgramas"></i></div>
+      </div>
+      <div class="arevalo-stat">
+        <small>Sistemas operativos</small>
+        <strong id="arevaloTotalSistemas">0</strong>
+        <span id="arevaloPorcentajeSistemas">Detectados en el sitio</span>
+        <div class="arevalo-bar"><i id="arevaloBarSistemas"></i></div>
+      </div>
+      <div class="arevalo-stat">
+        <small>Antivirus</small>
+        <strong id="arevaloTotalAntivirus">0</strong>
+        <span id="arevaloPorcentajeAntivirus">Detectados en el sitio</span>
+        <div class="arevalo-bar"><i id="arevaloBarAntivirus"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="arevalo-footer-wrap">
+  <div class="arevalo-footer">
+    <div class="arevalo-foot-col">
+      <div class="arevalo-foot-title">Servicio Técnico Arevalo</div>
+      <p>Servicio técnico para computadoras y laptops.</p>
+      <p>Formateo, mantenimiento, instalación de programas y soporte técnico.</p>
+      <p><strong>📍 Sullana - Piura, Perú</strong></p>
+    </div>
+
+    <div class="arevalo-foot-col">
+      <div class="arevalo-foot-title">Enlaces de interés</div>
+      <a href="#top">Inicio</a>
+      <a href="#">Programas</a>
+      <a href="#">Juegos</a>
+      <a href="#">Servicios</a>
+      <a href="https://wa.me/51966869638" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a class="arevalo-contact-btn" href="https://wa.me/51966869638?text=Hola%20Servicio%20Tecnico%20Arevalo,%20quiero%20consultar" target="_blank" rel="noopener">Contáctanos</a>
+    </div>
+
+    <div class="arevalo-foot-col">
+      <div class="arevalo-foot-title">Contacto / Importante</div>
+      <p><strong>WhatsApp:</strong> 966 869 638</p>
+      <p><strong>Llamadas:</strong> 930 875 710</p>
+      <p>Atención presencial y soporte remoto por AnyDesk.</p>
+      <p>Servicio para todo el Perú.</p>
+    </div>
+  </div>
+</footer>
+<div class="arevalo-copyright">© 2026 Servicio Técnico "Arevalo" · Todos los derechos reservados.</div>
+
+<script>
+(function(){
+  function actualizarEstadisticas(){
+    const cards=[...document.querySelectorAll('.card')];
+    const total=cards.length;
+    const textos=cards.map(c=>(c.innerText||'').toLowerCase());
+    const sistemas=textos.filter(t=>/windows|linux|ubuntu|debian|mint|fedora|macos|mac os/.test(t)).length;
+    const antivirus=textos.filter(t=>/antivirus|eset|nod32|avast|avg|avira|kaspersky|bitdefender|malwarebytes|mcafee/.test(t)).length;
+    const programas=Math.min(total, document.querySelectorAll('a.boton-descarga').length);
+    const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};
+    set('arevaloTotalContenido',total);
+    set('arevaloTotalProgramas',programas);
+    set('arevaloTotalSistemas',sistemas);
+    set('arevaloTotalAntivirus',antivirus);
+    const pct=n=>total?Math.min(100,(n/total)*100):0;
+    set('arevaloPorcentajeProgramas',total?Math.round(pct(programas))+'% del total':'Contenido disponible');
+    set('arevaloPorcentajeSistemas',total?Math.round(pct(sistemas))+'% del total':'Detectados en el sitio');
+    set('arevaloPorcentajeAntivirus',total?Math.round(pct(antivirus))+'% del total':'Detectados en el sitio');
+    const bars=[['arevaloBarTotal',100],['arevaloBarProgramas',pct(programas)],['arevaloBarSistemas',pct(sistemas)],['arevaloBarAntivirus',pct(antivirus)]];
+    bars.forEach(([id,w])=>{const e=document.getElementById(id);if(e)e.style.width=w+'%'});
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',actualizarEstadisticas); else actualizarEstadisticas();
+})();
+</script>
+
 </body>
 </html>
