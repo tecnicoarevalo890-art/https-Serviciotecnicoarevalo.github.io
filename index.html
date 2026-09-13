@@ -8644,12 +8644,7 @@ gtag('config','G-JN1PLW9E98');
 
 
 <script>
-/* ===== ACCESO DE USUARIO =====
-   Usuario creado:
-   admin
-   Contraseña:
-   Arevalo2026@
-*/
+/* ===== ACCESO DE USUARIO ===== */
 (function(){
   const USUARIO = "TECNICO AREVALO";
   const CONTRASENA = "Tecnicoarevalo2026@@";
@@ -8659,14 +8654,26 @@ gtag('config','G-JN1PLW9E98');
   const boton = document.getElementById("btnLogin");
   const mensaje = document.getElementById("mensajeLogin");
 
+  function esRegresoConHistorial(){
+    try {
+      const nav = performance.getEntriesByType("navigation")[0];
+      return nav && nav.type === "back_forward";
+    } catch(e) { return false; }
+  }
+
+  function ocultarLogin(){
+    overlay.style.display = "none";
+    document.body.classList.remove("login-bloqueado");
+  }
+
+  // Solo ocultar el login cuando el navegador vuelve con Atrás/Adelante.
+  if(esRegresoConHistorial()) ocultarLogin();
+
   function entrar(){
     const u = usuario.value.trim();
     const p = password.value;
-
     if(u === USUARIO && p === CONTRASENA){
-      
-      overlay.style.display = "none";
-      document.body.classList.remove("login-bloqueado");
+      ocultarLogin();
       mensaje.textContent = "";
     }else{
       mensaje.textContent = "❌ Usuario o contraseña incorrectos.";
@@ -8677,17 +8684,14 @@ gtag('config','G-JN1PLW9E98');
   }
 
   boton.addEventListener("click", entrar);
+  [usuario,password].forEach(campo=>campo.addEventListener("keydown", function(e){
+    if(e.key === "Enter"){
+      e.preventDefault();
+      entrar();
+    }
+  }));
 
-  [usuario,password].forEach(campo=>{
-    campo.addEventListener("keydown", function(e){
-      if(e.key === "Enter"){
-        e.preventDefault();
-        entrar();
-      }
-    });
-  });
-
-  setTimeout(()=>usuario.focus(),100);
+  if(overlay.style.display !== "none") setTimeout(()=>usuario.focus(),100);
 })();
 </script>
 
