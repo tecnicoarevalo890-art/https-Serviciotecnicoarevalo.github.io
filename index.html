@@ -799,7 +799,7 @@ MacOs X Mavericks 10.9
 MacOS High Sierra 10.13
 </a>
 <h2>🎨 Programas de Diseño</h2>
-<a class="boton-descarga" href="https://www.mediafire.com/file/nfovvyfhcel7g93" target="_blank">
+<a class="boton-descarga"https://www.mediafire.com/file/nfovvyfhcel7g93" target="_blank">
 CorelDRAW Graphics Suite 2026
 </a>
 <a class="boton-descarga" href="https://www.mediafire.com/file/pa8b6r4mjdifg48/CorelDRAW.Graphics.Suite.X7.v17.6.0.1021.Multilingual.ISO-CORE.rar/file" target="_blank">
@@ -8755,7 +8755,9 @@ gtag('config','G-JN1PLW9E98');
       segundos.textContent = n;
       if(n <= 0){
         clearInterval(timer);
-        window.location.href = destino;
+        window.open(destino, "_blank", "noopener,noreferrer");
+        salida.style.display = "none";
+        document.body.style.overflow = "";
       }
     },1000);
   }
