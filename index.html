@@ -623,6 +623,75 @@ nav{background:linear-gradient(var(--accent),var(--accent-dark))!important;borde
 .login-field input:focus,#clave:focus{border-color:var(--accent-soft)!important;box-shadow:0 0 0 2px var(--accent-glow)!important}
 .contador-visitas{background:var(--accent)!important}
 
+/* ===== ULTIMAS ACTUALIZACIONES ===== */
+.actualizaciones-wrap{
+  width:min(1180px,94%);
+  margin:22px auto;
+  background:#f5f5f5;
+  border:1px solid #08a9d0;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.actualizaciones-title{
+  padding:18px 22px;
+  background:repeating-linear-gradient(135deg,#111 0,#111 8px,#171717 8px,#171717 16px);
+  border-bottom:2px solid #08a9d0;
+}
+.actualizaciones-title h2{margin:0;color:#fff;font-size:24px}
+.lista-actualizaciones{padding:8px 18px;background:#fafafa}
+.actualizacion-item{
+  display:grid;
+  grid-template-columns:1fr auto auto auto;
+  gap:14px;
+  align-items:center;
+  padding:13px 4px;
+  border-bottom:1px solid #d33;
+  color:#111;
+}
+.actualizacion-item:last-child{border-bottom:0}
+.actualizacion-nombre{font-weight:700}
+.actualizacion-version{background:linear-gradient(90deg,#a64b00,#b7b000);color:#fff;padding:7px 11px;border-radius:7px;font-weight:800;font-size:13px;white-space:nowrap}
+.actualizacion-estado{background:#087a18;color:#fff;padding:7px 11px;border-radius:6px;font-weight:800;font-size:13px;white-space:nowrap}
+.actualizacion-fecha{border:1px solid #08a9d0;color:#333;background:#fff;padding:7px 11px;border-radius:6px;font-size:13px;white-space:nowrap}
+.actualizaciones-vacio{text-align:center;color:#777;padding:22px 10px}
+@media(max-width:650px){
+  .actualizacion-item{grid-template-columns:1fr 1fr;gap:8px}
+  .actualizacion-nombre{grid-column:1/-1}
+  .actualizacion-version,.actualizacion-estado,.actualizacion-fecha{font-size:12px;text-align:center}
+}
+
+
+/* ===== PANEL ADMINISTRADOR DE ACTUALIZACIONES ===== */
+#navAdminActualizaciones{display:none;background:rgba(0,0,0,.22)}
+.admin-actualizaciones-wrap{
+  width:min(1180px,94%); margin:22px auto; padding:24px;
+  background:linear-gradient(145deg,#171717,#0b0b0b);
+  border:1px solid #333; border-radius:14px; box-shadow:var(--shadow); display:none;
+}
+.admin-actualizaciones-wrap.open{display:block}
+.admin-head{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:18px}
+.admin-head h2{margin:0;color:#fff;font-size:25px}
+.admin-head p{margin:5px 0 0;color:#aaa;font-size:13px}
+.admin-badge{background:#087a18;color:#fff;padding:7px 10px;border-radius:7px;font-weight:800;font-size:12px}
+.admin-form{display:grid;grid-template-columns:1.5fr .8fr 1.8fr .8fr;gap:10px;background:#202020;padding:16px;border:1px solid #333;border-radius:11px}
+.admin-form label{display:block;color:#ddd;font-size:12px;font-weight:800;margin:0 0 6px}
+.admin-form .field{min-width:0}
+.admin-form input,.admin-form select{width:100%;padding:12px;border:1px solid #555;border-radius:8px;background:#111;color:#fff;outline:none}
+.admin-form input:focus,.admin-form select:focus{border-color:var(--accent-soft);box-shadow:0 0 0 2px var(--accent-glow)}
+.admin-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}
+.admin-btn{border:0;border-radius:8px;padding:11px 14px;color:#fff;font-weight:800;cursor:pointer;background:linear-gradient(135deg,var(--accent),var(--accent-dark))}
+.admin-btn.secondary{background:#333}.admin-btn.green{background:#087a18}.admin-btn.danger{background:#8c0000}.admin-btn:hover{filter:brightness(1.12);transform:translateY(-1px)}
+.admin-msg{min-height:20px;margin:10px 0 0;color:#7ee787;font-size:13px}
+.admin-list{margin-top:18px;background:#111;border:1px solid #333;border-radius:11px;overflow:hidden}
+.admin-list-head{padding:12px 15px;background:#1e1e1e;color:#fff;font-weight:800}
+.admin-row{display:grid;grid-template-columns:1.5fr .7fr .8fr .8fr auto;gap:10px;align-items:center;padding:11px 14px;border-top:1px solid #2d2d2d}
+.admin-row span{color:#ddd;font-size:13px}.admin-row small{color:#888}
+.admin-row .row-actions{display:flex;gap:6px}.admin-row button{border:0;border-radius:6px;padding:7px 9px;color:#fff;cursor:pointer;font-weight:700;background:#333}.admin-row button.edit{background:#087a18}.admin-row button.del{background:#8c0000}
+.admin-note{margin-top:12px;color:#888;font-size:12px;line-height:1.5}
+@media(max-width:900px){.admin-form{grid-template-columns:1fr 1fr}.admin-row{grid-template-columns:1fr 1fr}.admin-row .row-actions{grid-column:1/-1}}
+@media(max-width:650px){.admin-actualizaciones-wrap{padding:15px}.admin-form{grid-template-columns:1fr}.admin-row{grid-template-columns:1fr}.admin-actions .admin-btn{flex:1 1 45%}}
+
 </style>
 </head>
 <body class="login-bloqueado">
@@ -667,12 +736,68 @@ nav{background:linear-gradient(var(--accent),var(--accent-dark))!important;borde
   <a href="#programas">▣ Windows</a>
   <a href="#programas">● MacOS</a>
   <a href="#programas">▤ Colecciones</a>
+  <a href="#actualizaciones">⟳ Actualizaciones</a>
+  <a href="#adminActualizaciones" id="navAdminActualizaciones">⚙ Admin</a>
   <a href="#contacto">☎ Contacto</a>
 </nav>
 
 <section class="hero">
 <h2>Soluciones rápidas para tu computadora</h2>
 <p>Especialistas en reparación, mantenimiento y optimización de PCs y laptops.</p>
+</section>
+
+<!-- ===== ULTIMAS ACTUALIZACIONES ===== -->
+<section class="actualizaciones-wrap" id="actualizaciones">
+  <div class="actualizaciones-title">
+    <h2>Últimas Actualizaciones</h2>
+  </div>
+  <div id="listaActualizaciones" class="lista-actualizaciones"></div>
+</section>
+
+<!-- ===== PANEL ADMINISTRADOR DE ACTUALIZACIONES ===== -->
+<section class="admin-actualizaciones-wrap" id="adminActualizaciones">
+  <div class="admin-head">
+    <div>
+      <h2>⚙ Administrador de actualizaciones</h2>
+      <p>Cambia el enlace de un programa y registra automáticamente su nueva versión y fecha.</p>
+    </div>
+    <span class="admin-badge">🔐 SOLO ADMINISTRADOR</span>
+  </div>
+
+  <div class="admin-form">
+    <div class="field">
+      <label for="adminPrograma">Programa</label>
+      <select id="adminPrograma"></select>
+    </div>
+    <div class="field">
+      <label for="adminVersion">Versión</label>
+      <input id="adminVersion" type="text" placeholder="Ej.: v6.08">
+    </div>
+    <div class="field">
+      <label for="adminUrl">Nuevo enlace</label>
+      <input id="adminUrl" type="url" placeholder="https://www.mediafire.com/...">
+    </div>
+    <div class="field">
+      <label for="adminFecha">Fecha</label>
+      <input id="adminFecha" type="date">
+    </div>
+  </div>
+
+  <div class="admin-actions">
+    <button class="admin-btn" type="button" id="btnGuardarActualizacion">💾 Guardar actualización</button>
+    <button class="admin-btn secondary" type="button" id="btnNuevaActualizacion">＋ Nueva</button>
+    <button class="admin-btn green" type="button" id="btnDescargarHTMLActualizado">⬇ Descargar HTML actualizado</button>
+    <button class="admin-btn secondary" type="button" id="btnCerrarAdmin">✕ Cerrar panel</button>
+  </div>
+  <p id="adminMensaje" class="admin-msg"></p>
+
+  <div class="admin-list">
+    <div class="admin-list-head">📋 Historial de actualizaciones</div>
+    <div id="adminListaActualizaciones"></div>
+  </div>
+  <div class="admin-note">
+    Los cambios se guardan en este navegador. Para publicarlos en tu página, usa <b>“Descargar HTML actualizado”</b> y luego reemplaza tu index.html en GitHub/hosting con el archivo descargado.
+  </div>
 </section>
 
 <section class="servicios" id="servicios">
@@ -8798,6 +8923,183 @@ function categoriaParaTexto(texto){
   return "otros";
 }
 
+/* ===== ACTUALIZACIONES + PANEL ADMIN ===== */
+const ACTUALIZACIONES_BASE = [
+  // Puedes dejar esta lista vacía. El administrador las irá agregando desde el panel.
+];
+let ACTUALIZACIONES = JSON.parse(localStorage.getItem('arevaloActualizaciones') || 'null') || ACTUALIZACIONES_BASE;
+let adminEditando = -1;
+
+function escaparHTML(valor){
+  return String(valor ?? '').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+}
+function fechaBonita(fecha){
+  if(!fecha) return '';
+  const p=String(fecha).split('-');
+  return p.length===3 ? `${p[2]}/${p[1]}/${p[0]}` : fecha;
+}
+function hoyISO(){
+  const d=new Date();
+  const z=n=>String(n).padStart(2,'0');
+  return `${d.getFullYear()}-${z(d.getMonth()+1)}-${z(d.getDate())}`;
+}
+function guardarActualizacionesLocal(){
+  localStorage.setItem('arevaloActualizaciones', JSON.stringify(ACTUALIZACIONES));
+}
+function renderizarActualizaciones(){
+  const cont=document.getElementById('listaActualizaciones');
+  if(!cont) return;
+  const lista=[...ACTUALIZACIONES].sort((a,b)=>String(b.fecha||'').localeCompare(String(a.fecha||'')));
+  if(!lista.length){
+    cont.innerHTML='<div class="actualizaciones-vacio">No hay actualizaciones registradas todavía.</div>';
+    return;
+  }
+  cont.innerHTML=lista.map(u=>`
+    <div class="actualizacion-item">
+      <div class="actualizacion-nombre">${escaparHTML(u.nombre)}</div>
+      <div class="actualizacion-version">${escaparHTML(u.version||'Última versión')}</div>
+      <div class="actualizacion-estado">${escaparHTML(u.estado||'Actualizado')}</div>
+      <div class="actualizacion-fecha">${escaparHTML(fechaBonita(u.fecha)||u.fecha||'')}</div>
+    </div>`).join('');
+}
+function cargarSelectProgramas(){
+  const sel=document.getElementById('adminPrograma');
+  if(!sel) return;
+  const enlaces=[...document.querySelectorAll('.boton-descarga')];
+  const vistos=new Set();
+  sel.innerHTML='';
+  enlaces.forEach((a,i)=>{
+    const nombre=a.textContent.trim().replace(/\s+/g,' ');
+    const key=nombre.toLowerCase();
+    if(vistos.has(key)) return;
+    vistos.add(key);
+    const op=document.createElement('option');
+    op.value=String(i);
+    op.textContent=nombre;
+    op.dataset.nombre=nombre;
+    sel.appendChild(op);
+  });
+}
+function enlaceSeleccionado(){
+  const sel=document.getElementById('adminPrograma');
+  const enlaces=[...document.querySelectorAll('.boton-descarga')];
+  return enlaces[Number(sel?.value)||0] || null;
+}
+function cargarDatosPrograma(){
+  const a=enlaceSeleccionado();
+  if(!a) return;
+  const nombre=a.textContent.trim().replace(/\s+/g,' ');
+  const reg=ACTUALIZACIONES.find(x=>String(x.nombre).trim().toLowerCase()===nombre.toLowerCase());
+  document.getElementById('adminVersion').value=reg?.version||'';
+  document.getElementById('adminUrl').value=a.href||'';
+  document.getElementById('adminFecha').value=reg?.fecha||hoyISO();
+  adminEditando=reg ? ACTUALIZACIONES.indexOf(reg) : -1;
+}
+function renderizarAdminLista(){
+  const cont=document.getElementById('adminListaActualizaciones');
+  if(!cont) return;
+  const lista=[...ACTUALIZACIONES].sort((a,b)=>String(b.fecha||'').localeCompare(String(a.fecha||'')));
+  if(!lista.length){cont.innerHTML='<div style="padding:18px;color:#888">Todavía no has registrado actualizaciones.</div>';return;}
+  cont.innerHTML=lista.map((u,idx)=>{
+    const real=ACTUALIZACIONES.indexOf(u);
+    return `<div class="admin-row">
+      <span><b>${escaparHTML(u.nombre)}</b><br><small>${escaparHTML(u.url||'Sin enlace')}</small></span>
+      <span>${escaparHTML(u.version||'-')}</span>
+      <span>${escaparHTML(u.estado||'Actualizado')}</span>
+      <span>${escaparHTML(fechaBonita(u.fecha)||u.fecha||'-')}</span>
+      <span class="row-actions"><button class="edit" type="button" data-edit-update="${real}">Editar</button><button class="del" type="button" data-del-update="${real}">Eliminar</button></span>
+    </div>`;
+  }).join('');
+  cont.querySelectorAll('[data-edit-update]').forEach(btn=>btn.addEventListener('click',()=>editarActualizacion(Number(btn.dataset.editUpdate))));
+  cont.querySelectorAll('[data-del-update]').forEach(btn=>btn.addEventListener('click',()=>eliminarActualizacion(Number(btn.dataset.delUpdate))));
+}
+function mensajeAdmin(txt,ok=true){
+  const e=document.getElementById('adminMensaje');
+  if(e){e.textContent=txt;e.style.color=ok?'#7ee787':'#ff6b6b';}
+}
+function limpiarFormulario(){
+  adminEditando=-1;
+  document.getElementById('adminVersion').value='';
+  document.getElementById('adminUrl').value='';
+  document.getElementById('adminFecha').value=hoyISO();
+  const sel=document.getElementById('adminPrograma'); if(sel) sel.selectedIndex=0;
+  mensajeAdmin('Listo para registrar una nueva actualización.');
+}
+function guardarActualizacionAdmin(){
+  const a=enlaceSeleccionado();
+  if(!a){mensajeAdmin('Selecciona un programa.',false);return;}
+  const nombre=a.textContent.trim().replace(/\s+/g,' ');
+  const version=document.getElementById('adminVersion').value.trim();
+  const url=document.getElementById('adminUrl').value.trim();
+  const fecha=document.getElementById('adminFecha').value || hoyISO();
+  if(!version){mensajeAdmin('Escribe la versión del programa.',false);return;}
+  if(!url || !/^https?:\/\//i.test(url)){mensajeAdmin('Escribe un enlace válido que empiece por http:// o https://.',false);return;}
+  a.href=url;
+  a.dataset.actualizado='si';
+  const idx=ACTUALIZACIONES.findIndex(x=>String(x.nombre).trim().toLowerCase()===nombre.toLowerCase());
+  const dato={nombre,version,estado:'Actualizado',fecha,url};
+  if(idx>=0) ACTUALIZACIONES[idx]=dato; else ACTUALIZACIONES.push(dato);
+  guardarActualizacionesLocal(); renderizarActualizaciones(); renderizarAdminLista();
+  mensajeAdmin(`✅ ${nombre} actualizado correctamente.`);
+}
+function editarActualizacion(idx){
+  const u=ACTUALIZACIONES[idx]; if(!u) return;
+  const enlaces=[...document.querySelectorAll('.boton-descarga')];
+  const pos=enlaces.findIndex(a=>a.textContent.trim().replace(/\s+/g,' ').toLowerCase()===String(u.nombre).toLowerCase());
+  if(pos>=0) document.getElementById('adminPrograma').value=String(pos);
+  document.getElementById('adminVersion').value=u.version||'';
+  document.getElementById('adminUrl').value=u.url||enlaces[pos]?.href||'';
+  document.getElementById('adminFecha').value=u.fecha||hoyISO();
+  adminEditando=idx;
+  document.getElementById('adminActualizaciones').classList.add('open');
+  window.scrollTo({top:document.getElementById('adminActualizaciones').offsetTop-80,behavior:'smooth'});
+}
+function eliminarActualizacion(idx){
+  if(!ACTUALIZACIONES[idx]) return;
+  if(!confirm(`¿Eliminar la actualización de ${ACTUALIZACIONES[idx].nombre}?`)) return;
+  ACTUALIZACIONES.splice(idx,1); guardarActualizacionesLocal(); renderizarActualizaciones(); renderizarAdminLista(); mensajeAdmin('Actualización eliminada.');
+}
+function abrirAdminActualizaciones(){
+  const panel=document.getElementById('adminActualizaciones');
+  if(!panel) return;
+  panel.classList.add('open');
+  cargarSelectProgramas();
+  renderizarAdminLista();
+  cargarDatosPrograma();
+  panel.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function descargarHTMLActualizado(){
+  const clone=document.documentElement.cloneNode(true);
+  const scriptText=[...clone.querySelectorAll('script')].find(s=>s.textContent.includes('const ACTUALIZACIONES_BASE'));
+  if(scriptText){
+    const datos=JSON.stringify(ACTUALIZACIONES,null,2);
+    scriptText.textContent=scriptText.textContent.replace(/const ACTUALIZACIONES_BASE = \[[\\s\\S]*?\];/,'const ACTUALIZACIONES_BASE = '+datos+';');
+    scriptText.textContent=scriptText.textContent.replace(/let ACTUALIZACIONES = JSON.parse\(localStorage\.getItem\('arevaloActualizaciones'\) \|\| 'null'\) \|\| ACTUALIZACIONES_BASE;/,"let ACTUALIZACIONES = ACTUALIZACIONES_BASE;");
+  }
+  // Asegura que los enlaces modificados queden escritos en el HTML descargado.
+  const actuales=[...document.querySelectorAll('.boton-descarga')];
+  const copias=[...clone.querySelectorAll('.boton-descarga')];
+  actuales.forEach((a,i)=>{if(copias[i]) copias[i].setAttribute('href',a.href);});
+  clone.querySelectorAll('#adminActualizaciones,#navAdminActualizaciones').forEach(e=>{if(e.id==='adminActualizaciones') e.classList.remove('open');});
+  const salida='<!DOCTYPE html>\n'+clone.outerHTML;
+  const blob=new Blob([salida],{type:'text/html;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a'); a.href=url; a.download='index-actualizado-arevalo.html'; a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),1500);
+  mensajeAdmin('✅ Se descargó el HTML actualizado. Súbelo a GitHub/hosting para publicar los cambios.');
+}
+
+function prepararPanelActualizaciones(){
+  renderizarActualizaciones();
+  cargarSelectProgramas();
+  const fecha=document.getElementById('adminFecha'); if(fecha && !fecha.value) fecha.value=hoyISO();
+  document.getElementById('adminPrograma')?.addEventListener('change',cargarDatosPrograma);
+  document.getElementById('btnGuardarActualizacion')?.addEventListener('click',guardarActualizacionAdmin);
+  document.getElementById('btnNuevaActualizacion')?.addEventListener('click',limpiarFormulario);
+  document.getElementById('btnDescargarHTMLActualizado')?.addEventListener('click',descargarHTMLActualizado);
+  document.getElementById('btnCerrarAdmin')?.addEventListener('click',()=>document.getElementById('adminActualizaciones')?.classList.remove('open'));
+}
+
 function prepararProgramas(){
   const enlaces = [...document.querySelectorAll(".boton-descarga")];
   enlaces.forEach(a=>{
@@ -8830,6 +9132,7 @@ function actualizarProgramas(){
 }
 
 document.addEventListener("DOMContentLoaded", ()=>{
+  renderizarActualizaciones();
   prepararProgramas();
 
   const buscador = document.getElementById("buscadorProgramas");
@@ -8955,6 +9258,8 @@ gtag('config','G-JN1PLW9E98');
   function ocultarLogin(){
     overlay.style.display = "none";
     document.body.classList.remove("login-bloqueado");
+    const adminNav = document.getElementById("navAdminActualizaciones");
+    if(adminNav) adminNav.style.display = "inline-block";
   }
 
   // Solo ocultar el login cuando el navegador vuelve con Atrás/Adelante.
@@ -8975,6 +9280,8 @@ gtag('config','G-JN1PLW9E98');
   }
 
   boton.addEventListener("click", entrar);
+  const adminNav = document.getElementById("navAdminActualizaciones");
+  if(adminNav){ adminNav.addEventListener("click", function(e){ e.preventDefault(); abrirAdminActualizaciones(); }); }
   [usuario,password].forEach(campo=>campo.addEventListener("keydown", function(e){
     if(e.key === "Enter"){
       e.preventDefault();
