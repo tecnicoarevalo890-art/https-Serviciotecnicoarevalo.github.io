@@ -720,6 +720,22 @@ nav{background:linear-gradient(var(--accent),var(--accent-dark))!important;borde
 </div>
 
 
+<!-- ===== CLAVE PRIVADA PARA MODIFICAR ACTUALIZACIONES ===== -->
+<div id="adminPasswordOverlay" aria-modal="true" role="dialog">
+  <div class="admin-password-box">
+    <div class="big-lock">🔐</div>
+    <h3>Área privada</h3>
+    <p>Ingresa la contraseña de administrador para modificar actualizaciones.</p>
+    <input id="adminUpdatePassword" type="password" placeholder="Contraseña privada" autocomplete="off">
+    <div class="admin-password-actions">
+      <button type="button" id="btnConfirmAdminPassword">🔓 Ingresar</button>
+      <button type="button" id="btnCancelAdminPassword">Cancelar</button>
+    </div>
+    <p id="adminPasswordMessage"></p>
+    <p class="admin-security-note">Esta clave es independiente de la clave de descargas.</p>
+  </div>
+</div>
+
 <header>
   <img class="logo-top" src="https://github.com/tecnicoarevalo890-art/https-Serviciotecnicoarevalo.github.io/blob/Main/ChatGPT%20Image%204%20jun%202026,%2010_13_07%20a.m..png?raw=true" alt="Servicio Técnico Arévalo">
   <div class="brand-copy">
@@ -9018,6 +9034,7 @@ function mensajeAdmin(txt,ok=true){
   if(e){e.textContent=txt;e.style.color=ok?'#7ee787':'#ff6b6b';}
 }
 function limpiarFormulario(){
+  if(!adminAutorizadoSesion){ pedirClaveAdmin(); return; }
   adminEditando=-1;
   document.getElementById('adminVersion').value='';
   document.getElementById('adminUrl').value='';
@@ -9026,6 +9043,7 @@ function limpiarFormulario(){
   mensajeAdmin('Listo para registrar una nueva actualización.');
 }
 function guardarActualizacionAdmin(){
+  if(!adminAutorizadoSesion){ pedirClaveAdmin(); return; }
   const a=enlaceSeleccionado();
   if(!a){mensajeAdmin('Selecciona un programa.',false);return;}
   const nombre=a.textContent.trim().replace(/\s+/g,' ');
@@ -9043,6 +9061,7 @@ function guardarActualizacionAdmin(){
   mensajeAdmin(`✅ ${nombre} actualizado correctamente.`);
 }
 function editarActualizacion(idx){
+  if(!adminAutorizadoSesion){ pedirClaveAdmin(); return; }
   const u=ACTUALIZACIONES[idx]; if(!u) return;
   const enlaces=[...document.querySelectorAll('.boton-descarga')];
   const pos=enlaces.findIndex(a=>a.textContent.trim().replace(/\s+/g,' ').toLowerCase()===String(u.nombre).toLowerCase());
@@ -9055,11 +9074,45 @@ function editarActualizacion(idx){
   window.scrollTo({top:document.getElementById('adminActualizaciones').offsetTop-80,behavior:'smooth'});
 }
 function eliminarActualizacion(idx){
+  if(!adminAutorizadoSesion){ pedirClaveAdmin(); return; }
   if(!ACTUALIZACIONES[idx]) return;
   if(!confirm(`¿Eliminar la actualización de ${ACTUALIZACIONES[idx].nombre}?`)) return;
   ACTUALIZACIONES.splice(idx,1); guardarActualizacionesLocal(); renderizarActualizaciones(); renderizarAdminLista(); mensajeAdmin('Actualización eliminada.');
 }
-function abrirAdminActualizaciones(){
+const CLAVE_ADMIN_ACTUALIZACIONES = "AREVALO-ADMIN-2026#9";
+let adminAutorizadoSesion = false;
+
+function pedirClaveAdmin(){
+  const overlay=document.getElementById('adminPasswordOverlay');
+  const input=document.getElementById('adminUpdatePassword');
+  const msg=document.getElementById('adminPasswordMessage');
+  if(!overlay) return;
+  if(adminAutorizadoSesion){ abrirPanelAdminActualizaciones(); return; }
+  overlay.classList.add('open');
+  if(msg) msg.textContent='';
+  if(input){ input.value=''; setTimeout(()=>input.focus(),80); }
+}
+
+function confirmarClaveAdmin(){
+  const input=document.getElementById('adminUpdatePassword');
+  const msg=document.getElementById('adminPasswordMessage');
+  if(!input) return;
+  if(input.value === CLAVE_ADMIN_ACTUALIZACIONES){
+    adminAutorizadoSesion=true;
+    document.getElementById('adminPasswordOverlay')?.classList.remove('open');
+    abrirPanelAdminActualizaciones();
+  }else{
+    if(msg) msg.textContent='❌ Contraseña incorrecta.';
+    input.select();
+  }
+}
+
+function cerrarClaveAdmin(){
+  document.getElementById('adminPasswordOverlay')?.classList.remove('open');
+  const input=document.getElementById('adminUpdatePassword'); if(input) input.value='';
+}
+
+function abrirPanelAdminActualizaciones(){
   const panel=document.getElementById('adminActualizaciones');
   if(!panel) return;
   panel.classList.add('open');
@@ -9068,12 +9121,17 @@ function abrirAdminActualizaciones(){
   cargarDatosPrograma();
   panel.scrollIntoView({behavior:'smooth',block:'start'});
 }
+
+function abrirAdminActualizaciones(){
+  pedirClaveAdmin();
+}
 function descargarHTMLActualizado(){
+  if(!adminAutorizadoSesion){ pedirClaveAdmin(); return; }
   const clone=document.documentElement.cloneNode(true);
   const scriptText=[...clone.querySelectorAll('script')].find(s=>s.textContent.includes('const ACTUALIZACIONES_BASE'));
   if(scriptText){
     const datos=JSON.stringify(ACTUALIZACIONES,null,2);
-    scriptText.textContent=scriptText.textContent.replace(/const ACTUALIZACIONES_BASE = \[[\\s\\S]*?\];/,'const ACTUALIZACIONES_BASE = '+datos+';');
+    scriptText.textContent=scriptText.textContent.replace(/const ACTUALIZACIONES_BASE = \[[\s\S]*?\];/,'const ACTUALIZACIONES_BASE = '+datos+';');
     scriptText.textContent=scriptText.textContent.replace(/let ACTUALIZACIONES = JSON.parse\(localStorage\.getItem\('arevaloActualizaciones'\) \|\| 'null'\) \|\| ACTUALIZACIONES_BASE;/,"let ACTUALIZACIONES = ACTUALIZACIONES_BASE;");
   }
   // Asegura que los enlaces modificados queden escritos en el HTML descargado.
@@ -9097,7 +9155,10 @@ function prepararPanelActualizaciones(){
   document.getElementById('btnGuardarActualizacion')?.addEventListener('click',guardarActualizacionAdmin);
   document.getElementById('btnNuevaActualizacion')?.addEventListener('click',limpiarFormulario);
   document.getElementById('btnDescargarHTMLActualizado')?.addEventListener('click',descargarHTMLActualizado);
-  document.getElementById('btnCerrarAdmin')?.addEventListener('click',()=>document.getElementById('adminActualizaciones')?.classList.remove('open'));
+  document.getElementById('btnCerrarAdmin')?.addEventListener('click',()=>{document.getElementById('adminActualizaciones')?.classList.remove('open');adminAutorizadoSesion=false;});
+  document.getElementById('btnConfirmAdminPassword')?.addEventListener('click',confirmarClaveAdmin);
+  document.getElementById('btnCancelAdminPassword')?.addEventListener('click',cerrarClaveAdmin);
+  document.getElementById('adminUpdatePassword')?.addEventListener('keydown',e=>{if(e.key==='Enter') confirmarClaveAdmin();if(e.key==='Escape') cerrarClaveAdmin();});
 }
 
 function prepararProgramas(){
@@ -9132,6 +9193,9 @@ function actualizarProgramas(){
 }
 
 document.addEventListener("DOMContentLoaded", ()=>{
+  // Inicializar también el panel de administración.
+  // Sin esta llamada los botones del panel no recibían sus eventos.
+  prepararPanelActualizaciones();
   renderizarActualizaciones();
   prepararProgramas();
 
@@ -9397,6 +9461,25 @@ gtag('config','G-JN1PLW9E98');
 .arevalo-copyright{max-width:1180px;margin:0 auto;padding:20px 18px 25px;text-align:center;color:#fff;font-size:15px;box-sizing:border-box}
 @media(max-width:900px){.arevalo-stats-grid{grid-template-columns:repeat(2,1fr)}.arevalo-footer{grid-template-columns:1fr}}
 @media(max-width:560px){.arevalo-estadisticas-wrap,.arevalo-footer-wrap{padding:0 10px}.arevalo-estadisticas{padding:22px 14px}.arevalo-estadisticas h2{font-size:24px}.arevalo-stats-grid{grid-template-columns:1fr;gap:12px}.arevalo-stat strong{font-size:38px}.arevalo-footer{padding:25px 15px}.arevalo-foot-title{font-size:18px}}
+
+/* ===== SEGURIDAD DEL PANEL DE ACTUALIZACIONES ===== */
+#adminPasswordOverlay{
+  position:fixed; inset:0; z-index:100002; display:none; align-items:center; justify-content:center;
+  padding:20px; background:rgba(0,0,0,.92); backdrop-filter:blur(5px);
+}
+#adminPasswordOverlay.open{display:flex}
+.admin-password-box{width:min(430px,100%);padding:30px 25px;background:linear-gradient(145deg,#260000,#0d0d0d);border:1px solid var(--accent);border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.7);text-align:center}
+.admin-password-box .big-lock{font-size:48px;margin-bottom:8px}
+.admin-password-box h3{margin:5px 0 8px;font-size:25px}
+.admin-password-box p{color:#aaa;margin:0 0 20px}
+#adminUpdatePassword{width:100%;padding:14px;border:1px solid #555;border-radius:8px;background:#181818;color:#fff;outline:none;font-size:16px}
+#adminUpdatePassword:focus{border-color:var(--accent-soft);box-shadow:0 0 0 2px var(--accent-glow)}
+.admin-password-actions{display:flex;gap:9px;margin-top:14px}
+.admin-password-actions button{flex:1;padding:12px;border:0;border-radius:8px;color:#fff;font-weight:bold;cursor:pointer}
+#btnConfirmAdminPassword{background:linear-gradient(135deg,var(--accent),var(--accent-dark))}
+#btnCancelAdminPassword{background:#333}
+#adminPasswordMessage{min-height:20px;margin:12px 0 0;font-size:13px;color:#ff6b6b}
+.admin-security-note{margin-top:10px!important;font-size:11px!important;color:#666!important}
 </style>
 
 <section class="arevalo-estadisticas-wrap" aria-label="Estadísticas del sitio">
