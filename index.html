@@ -692,6 +692,71 @@ nav{background:linear-gradient(var(--accent),var(--accent-dark))!important;borde
 @media(max-width:900px){.admin-form{grid-template-columns:1fr 1fr}.admin-row{grid-template-columns:1fr 1fr}.admin-row .row-actions{grid-column:1/-1}}
 @media(max-width:650px){.admin-actualizaciones-wrap{padding:15px}.admin-form{grid-template-columns:1fr}.admin-row{grid-template-columns:1fr}.admin-actions .admin-btn{flex:1 1 45%}}
 
+
+
+/* ===== DECORACIÓN ANIMADA DE HALLOWEEN: MURCIÉLAGOS Y CALABAZAS ===== */
+#halloween-decor{
+  position:fixed; inset:0; overflow:hidden; pointer-events:none;
+  z-index:40; contain:layout paint;
+}
+.bat-art{width:1.7em;height:1em;overflow:visible;display:block;fill:#050505;}
+.bat-wing{transform-box:fill-box;transform-origin:center center;}
+.bat-wing-left{animation:bat-flap-left .24s ease-in-out infinite alternate;}
+.bat-wing-right{animation:bat-flap-right .24s ease-in-out infinite alternate;}
+@keyframes bat-flap-left{from{transform:rotate(-28deg) scaleY(.72)}to{transform:rotate(24deg) scaleY(1.08)}}
+@keyframes bat-flap-right{from{transform:rotate(28deg) scaleY(.72)}to{transform:rotate(-24deg) scaleY(1.08)}}
+.halloween-bat{
+  position:absolute; left:-100px; top:var(--top,12%);
+  font-size:clamp(24px,3vw,42px); line-height:1;
+  filter:drop-shadow(0 3px 4px rgba(0,0,0,.65));
+  animation:bat-flight var(--duration,17s) linear infinite;
+  animation-delay:var(--delay,0s);
+  will-change:transform;
+}
+.halloween-bat.bat-two{top:var(--top,32%);font-size:clamp(20px,2.5vw,34px);animation-name:bat-flight-reverse}
+.halloween-bat.bat-three{top:var(--top,58%);font-size:clamp(18px,2vw,30px)}
+.halloween-pumpkin{
+  position:absolute; bottom:12px; left:-90px;
+  font-size:clamp(28px,4vw,54px); line-height:1;
+  filter:drop-shadow(0 5px 5px rgba(0,0,0,.6));
+  animation:pumpkin-drift var(--duration,23s) ease-in-out infinite alternate;
+  animation-delay:var(--delay,0s);
+  will-change:transform;
+}
+.halloween-pumpkin.pumpkin-right{
+  left:auto; right:-90px; bottom:25%;
+  animation-name:pumpkin-drift-reverse;
+}
+@keyframes bat-flight{
+  0%{transform:translate3d(-12vw,0,0) rotate(-8deg)}
+  25%{transform:translate3d(30vw,-24px,0) rotate(5deg)}
+  50%{transform:translate3d(60vw,18px,0) rotate(-5deg)}
+  75%{transform:translate3d(90vw,-14px,0) rotate(7deg)}
+  100%{transform:translate3d(115vw,8px,0) rotate(-6deg)}
+}
+@keyframes bat-flight-reverse{
+  0%{transform:translate3d(115vw,0,0) scaleX(-1) rotate(7deg)}
+  50%{transform:translate3d(50vw,22px,0) scaleX(-1) rotate(-6deg)}
+  100%{transform:translate3d(-15vw,-12px,0) scaleX(-1) rotate(5deg)}
+}
+@keyframes pumpkin-drift{
+  0%{transform:translate3d(0,0,0) rotate(-12deg)}
+  50%{transform:translate3d(48vw,-28px,0) rotate(12deg)}
+  100%{transform:translate3d(100vw,-8px,0) rotate(-8deg)}
+}
+@keyframes pumpkin-drift-reverse{
+  0%{transform:translate3d(0,0,0) rotate(10deg)}
+  50%{transform:translate3d(-42vw,25px,0) rotate(-12deg)}
+  100%{transform:translate3d(-100vw,-12px,0) rotate(8deg)}
+}
+@media(prefers-reduced-motion:reduce){
+  .halloween-bat,.halloween-pumpkin{animation-duration:60s!important}
+}
+@media(max-width:650px){
+  .halloween-bat{font-size:23px}
+  .halloween-pumpkin{font-size:32px}
+}
+
 </style>
 </head>
 <body class="login-bloqueado">
@@ -10016,6 +10081,16 @@ gtag('config','G-JN1PLW9E98');
   applyColor(localStorage.getItem('arevaloAccentColor')||original);
 })();
 </script>
+
+
+<!-- Decoración animada; no bloquea botones ni enlaces -->
+<div id="halloween-decor" aria-hidden="true">
+  <span class="halloween-bat" style="--top:12%;--duration:19s;--delay:-4s"><svg class="bat-art" viewBox="0 0 100 54" role="img" aria-label="Murciélago volando"><path class="bat-wing bat-wing-left" d="M48 25 C37 6 20 2 2 5 C10 14 5 22 17 25 C12 34 25 39 34 32 C38 39 44 36 49 31 Z"/><path class="bat-wing bat-wing-right" d="M52 25 C63 6 80 2 98 5 C90 14 95 22 83 25 C88 34 75 39 66 32 C62 39 56 36 51 31 Z"/><ellipse cx="50" cy="29" rx="5" ry="13"/><circle cx="50" cy="15" r="6"/><path d="M46 11 L43 5 L48 9 M54 11 L57 5 L52 9" fill="#080808"/></svg></span>
+  <span class="halloween-bat bat-two" style="--top:29%;--duration:24s;--delay:-12s"><svg class="bat-art" viewBox="0 0 100 54" role="img" aria-label="Murciélago volando"><path class="bat-wing bat-wing-left" d="M48 25 C37 6 20 2 2 5 C10 14 5 22 17 25 C12 34 25 39 34 32 C38 39 44 36 49 31 Z"/><path class="bat-wing bat-wing-right" d="M52 25 C63 6 80 2 98 5 C90 14 95 22 83 25 C88 34 75 39 66 32 C62 39 56 36 51 31 Z"/><ellipse cx="50" cy="29" rx="5" ry="13"/><circle cx="50" cy="15" r="6"/><path d="M46 11 L43 5 L48 9 M54 11 L57 5 L52 9" fill="#080808"/></svg></span>
+  <span class="halloween-bat bat-three" style="--top:52%;--duration:21s;--delay:-8s"><svg class="bat-art" viewBox="0 0 100 54" role="img" aria-label="Murciélago volando"><path class="bat-wing bat-wing-left" d="M48 25 C37 6 20 2 2 5 C10 14 5 22 17 25 C12 34 25 39 34 32 C38 39 44 36 49 31 Z"/><path class="bat-wing bat-wing-right" d="M52 25 C63 6 80 2 98 5 C90 14 95 22 83 25 C88 34 75 39 66 32 C62 39 56 36 51 31 Z"/><ellipse cx="50" cy="29" rx="5" ry="13"/><circle cx="50" cy="15" r="6"/><path d="M46 11 L43 5 L48 9 M54 11 L57 5 L52 9" fill="#080808"/></svg></span>
+  <span class="halloween-pumpkin" style="--duration:27s;--delay:-9s">🎃</span>
+  <span class="halloween-pumpkin pumpkin-right" style="--duration:31s;--delay:-17s">🎃</span>
+</div>
 
 </body>
 </html>
