@@ -427,93 +427,61 @@ footer{
 }
 
 
-/* ===== LOGIN DE ACCESO ===== */
+/* ===== LOGIN DE ACCESO: EDICION HALLOWEEN (solo modal) ===== */
 body.login-bloqueado > *:not(#loginOverlay){visibility:hidden}
 #loginOverlay{
-  position:fixed;
-  inset:0;
-  z-index:99999;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
+  position:fixed; inset:0; z-index:99999; display:flex; align-items:center; justify-content:center;
+  padding:clamp(12px,3vw,34px); overflow:hidden; isolation:isolate;
   background:
-    radial-gradient(circle at 50% 25%,rgba(160,0,0,.35),transparent 35%),
-    rgba(0,0,0,.96);
+    radial-gradient(ellipse at 50% 48%,rgba(101,0,150,.30),transparent 42%),
+    radial-gradient(circle at 50% 0%,rgba(255,90,0,.16),transparent 34%),
+    linear-gradient(180deg,rgba(3,3,13,.97),rgba(12,0,18,.97) 54%,rgba(2,2,7,.99));
+}
+#loginOverlay:before{
+  content:""; position:absolute; width:clamp(150px,19vw,270px); aspect-ratio:1; border-radius:50%;
+  top:4%; left:calc(50% - clamp(75px,9.5vw,135px));
+  background:radial-gradient(circle at 38% 34%,#fff5ff 0,#e9c5ff 18%,#9d6ab9 43%,#4c2469 66%,rgba(70,20,100,.08) 72%,transparent 74%);
+  box-shadow:0 0 50px rgba(193,83,255,.32); opacity:.85; z-index:-1;
+}
+#loginOverlay:after{
+  content:""; position:absolute; inset:0; z-index:-1; opacity:.6; pointer-events:none;
+  background-image:radial-gradient(#fff 1px,transparent 1.5px),radial-gradient(#ff8a30 1px,transparent 1.5px);
+  background-size:83px 91px,137px 123px; background-position:8px 13px,47px 62px;
 }
 .login-box{
-  width:min(430px,100%);
-  padding:34px 28px;
-  background:linear-gradient(145deg,#260000,#0d0d0d);
-  border:1px solid #7d1717;
-  border-radius:16px;
-  box-shadow:0 20px 60px rgba(0,0,0,.65),0 0 35px rgba(150,0,0,.18);
-  text-align:center;
+  position:relative; z-index:3; width:min(560px,100%); max-height:calc(100dvh - 28px); overflow:auto;
+  padding:clamp(24px,4vw,42px) clamp(20px,4vw,42px) 28px; text-align:center; color:#fff;
+  background:linear-gradient(160deg,rgba(13,4,22,.97),rgba(3,3,10,.98) 60%,rgba(26,0,15,.98));
+  border:2px solid #ff281c; border-radius:22px;
+  box-shadow:0 0 0 5px rgba(80,0,80,.35),0 0 26px rgba(255,22,15,.7),0 0 90px rgba(154,25,255,.24),inset 0 0 34px rgba(135,0,65,.24);
 }
-.login-logo{
-  width:88px;
-  height:88px;
-  object-fit:contain;
-  margin-bottom:8px;
-}
-.login-box h2{
-  margin:5px 0 8px;
-  font-size:30px;
-}
-.login-box .login-subtitle{
-  color:#aaa;
-  margin:0 0 24px;
-}
-.login-field{
-  text-align:left;
-  margin-bottom:14px;
-}
-.login-field label{
-  display:block;
-  color:#ddd;
-  font-weight:bold;
-  margin-bottom:7px;
-  font-size:14px;
-}
-.login-field input{
-  width:100%;
-  padding:14px 15px;
-  border:1px solid #4b4b4b;
-  border-radius:8px;
-  background:#181818;
-  color:#fff;
-  outline:none;
-  font-size:16px;
-}
-.login-field input:focus{
-  border-color:#c40000;
-  box-shadow:0 0 0 2px rgba(196,0,0,.16);
-}
-#btnLogin{
-  width:100%;
-  margin-top:8px;
-  padding:14px;
-  border:0;
-  border-radius:8px;
-  background:linear-gradient(135deg,#c00000,#650000);
-  color:#fff;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
-}
-#btnLogin:hover{background:linear-gradient(135deg,#e00000,#850000)}
-#mensajeLogin{
-  min-height:20px;
-  margin:13px 0 0;
-  font-size:14px;
-  color:#999;
-}
-.login-footer{
-  margin-top:20px;
-  color:#666;
-  font-size:12px;
-}
-
+.login-box:before,.login-box:after{content:"🕸️";position:absolute;top:8px;font-size:clamp(28px,4vw,45px);opacity:.9;pointer-events:none;filter:drop-shadow(0 0 8px #a52bff)}
+.login-box:before{left:10px}.login-box:after{right:10px;transform:scaleX(-1)}
+.login-logo{width:clamp(76px,10vw,105px);height:clamp(76px,10vw,105px);object-fit:contain;margin:2px auto 8px;display:block;filter:drop-shadow(0 0 13px rgba(255,30,20,.55))}
+.login-box h2{margin:8px 0 8px;font-size:clamp(27px,4vw,38px);font-weight:900;text-transform:uppercase;letter-spacing:1.5px;color:#fff;text-shadow:0 0 9px #ff2418,2px 3px 0 #870000}
+.login-box .login-subtitle{color:#e4d9eb;margin:0 0 24px;font-size:15px;line-height:1.45}
+.login-field{text-align:left;margin-bottom:15px;position:relative;z-index:4}
+.login-field label{display:block;color:#ffe8e5;font-weight:700;margin-bottom:7px;font-size:14px}
+.login-field input{box-sizing:border-box;width:100%;padding:15px 16px;border:1px solid #b82a42;border-radius:11px;background:rgba(4,4,12,.92);color:#fff;outline:none;font-size:16px;box-shadow:inset 0 0 12px rgba(0,0,0,.5);transition:border-color .2s,box-shadow .2s}
+.login-field input:focus{border-color:#ff4a20;box-shadow:0 0 0 3px rgba(255,48,23,.16),0 0 17px rgba(255,28,18,.24)}
+#btnLogin{position:relative;z-index:4;width:min(310px,100%);margin-top:9px;padding:15px 20px;border:1px solid #ff8b3a;border-radius:12px;background:linear-gradient(180deg,#ff3020,#b00009 58%,#65000a);color:#fff;font-size:18px;font-weight:900;cursor:pointer;text-shadow:0 1px 2px #4d0000;box-shadow:0 0 18px rgba(255,30,15,.35),inset 0 1px 0 rgba(255,255,255,.2);transition:transform .2s,filter .2s}
+#btnLogin:hover{filter:brightness(1.18);transform:translateY(-2px)}
+#mensajeLogin{position:relative;z-index:4;min-height:20px;margin:13px 0 0;font-size:14px;color:#ffc5c0}
+.login-footer{position:relative;z-index:4;margin-top:17px;color:#c6b4ce;font-size:12px}
+.halloween-login-decor{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.halloween-login-decor .deco{position:absolute;display:block;line-height:1;user-select:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.75));}
+.halloween-login-decor .bat{font-size:clamp(22px,3vw,39px);animation:login-bat-fly var(--dur,15s) linear infinite;animation-delay:var(--delay,0s)}
+.halloween-login-decor .bat:nth-child(3n){animation-name:login-bat-fly-reverse}
+.halloween-login-decor .pumpkin{font-size:clamp(30px,4vw,58px);animation:login-pumpkin-float var(--dur,4s) ease-in-out infinite alternate;animation-delay:var(--delay,0s)}
+.halloween-login-decor .skeleton{font-size:clamp(32px,4vw,58px);animation:login-spooky-float 4s ease-in-out infinite alternate}
+.halloween-login-decor .web{font-size:clamp(48px,7vw,92px);opacity:.88;filter:drop-shadow(0 0 9px #b52aff)}
+.halloween-login-decor .spider{font-size:clamp(19px,2.4vw,30px);animation:login-spooky-float 3s ease-in-out infinite alternate}
+@keyframes login-bat-fly{0%{transform:translate(-12vw,0) rotate(-9deg) scale(.8)}50%{transform:translate(48vw,-25px) rotate(8deg) scale(1.08)}100%{transform:translate(112vw,15px) rotate(-5deg) scale(.85)}}
+@keyframes login-bat-fly-reverse{0%{transform:translate(112vw,8px) scaleX(-1) rotate(8deg)}50%{transform:translate(50vw,-18px) scaleX(-1) rotate(-8deg)}100%{transform:translate(-12vw,14px) scaleX(-1) rotate(5deg)}}
+@keyframes login-pumpkin-float{from{transform:translateY(-7px) rotate(-7deg)}to{transform:translateY(10px) rotate(8deg)}}
+@keyframes login-spooky-float{from{transform:translateY(-5px) rotate(-3deg)}to{transform:translateY(9px) rotate(4deg)}}
+@media(max-width:600px){#loginOverlay{padding:10px}.login-box{padding:30px 18px 22px;border-radius:17px}.login-box .login-subtitle{margin-bottom:18px}.halloween-login-decor .skeleton{font-size:29px}.halloween-login-decor .web{font-size:48px}}
+@media(prefers-reduced-motion:reduce){.halloween-login-decor .deco{animation-duration:30s!important}}
 
 /* ===== SELECTOR DE COLORES DEL SITIO ===== */
 :root{
@@ -760,27 +728,50 @@ nav{background:linear-gradient(var(--accent),var(--accent-dark))!important;borde
 </style>
 </head>
 <body class="login-bloqueado">
-<div id="loginOverlay" aria-modal="true" role="dialog">
+<div id="loginOverlay" aria-modal="true" role="dialog" aria-labelledby="tituloLogin">
+  <div class="halloween-login-decor" aria-hidden="true">
+    <span class="deco web" style="top:2%;left:1%">🕸️</span>
+    <span class="deco web" style="top:1%;right:1%;transform:scaleX(-1)">🕸️</span>
+    <span class="deco bat" style="top:10%;left:0%;--dur:16s;--delay:-5s">🦇</span>
+    <span class="deco bat" style="top:20%;left:0%;--dur:21s;--delay:-13s">🦇</span>
+    <span class="deco bat" style="top:35%;left:0%;--dur:18s;--delay:-8s">🦇</span>
+    <span class="deco bat" style="top:48%;left:0%;--dur:24s;--delay:-17s">🦇</span>
+    <span class="deco bat" style="top:65%;left:0%;--dur:19s;--delay:-10s">🦇</span>
+    <span class="deco bat" style="top:78%;left:0%;--dur:22s;--delay:-4s">🦇</span>
+    <span class="deco bat" style="top:87%;left:0%;--dur:17s;--delay:-12s">🦇</span>
+    <span class="deco pumpkin" style="left:3%;bottom:4%;--delay:-1s">🎃</span>
+    <span class="deco pumpkin" style="right:3%;bottom:4%;--delay:-2.5s">🎃</span>
+    <span class="deco pumpkin" style="left:11%;bottom:19%;font-size:clamp(23px,3vw,42px);--delay:-.8s">🎃</span>
+    <span class="deco pumpkin" style="right:11%;bottom:19%;font-size:clamp(23px,3vw,42px);--delay:-1.8s">🎃</span>
+    <span class="deco skeleton" style="left:4%;top:35%;--delay:-1s">💀</span>
+    <span class="deco skeleton" style="right:4%;top:35%;--delay:-2s">☠️</span>
+    <span class="deco skeleton" style="left:8%;bottom:35%;font-size:clamp(26px,3vw,43px);--delay:-1.5s">🧟</span>
+    <span class="deco skeleton" style="right:8%;bottom:35%;font-size:clamp(26px,3vw,43px);--delay:-.5s">💀</span>
+    <span class="deco spider" style="left:17%;top:22%;--delay:-1s">🕷️</span>
+    <span class="deco spider" style="right:17%;top:22%;--delay:-2s">🕷️</span>
+    <span class="deco spider" style="left:19%;bottom:17%;--delay:-.5s">🕷️</span>
+    <span class="deco spider" style="right:19%;bottom:17%;--delay:-1.5s">🕷️</span>
+    <span class="deco" style="left:2%;top:57%;font-size:clamp(23px,3vw,40px)">🕯️</span>
+    <span class="deco" style="right:2%;top:57%;font-size:clamp(23px,3vw,40px)">🕯️</span>
+  </div>
   <div class="login-box">
     <img class="login-logo" src="https://github.com/tecnicoarevalo890-art/https-Serviciotecnicoarevalo.github.io/blob/Main/ChatGPT%20Image%204%20jun%202026,%2010_13_07%20a.m..png?raw=true" alt="Servicio Técnico Arévalo">
-    <h2>Iniciar sesión</h2>
-    <p class="login-subtitle">Accede a Servicio Técnico Arévalo</p>
+    <h2 id="tituloLogin">🎃 Iniciar sesión 🎃</h2>
+    <p class="login-subtitle">Accede a Servicio Técnico Arévalo y disfruta de todos nuestros programas y descargas.</p>
 
     <div class="login-field">
-      <label for="loginUsuario">👤 Usuario</label>
-      <input id="loginUsuario" type="text" placeholder="Ingrese su usuario"
-             autocomplete="username">
+      <label for="loginUsuario">👤 Usuario o correo electrónico</label>
+      <input id="loginUsuario" type="text" placeholder="Ingrese su usuario" autocomplete="username">
     </div>
 
     <div class="login-field">
       <label for="loginPassword">🔒 Contraseña</label>
-      <input id="loginPassword" type="password" placeholder="Ingrese su contraseña"
-             autocomplete="current-password">
+      <input id="loginPassword" type="password" placeholder="Ingrese su contraseña" autocomplete="current-password">
     </div>
 
-    <button id="btnLogin" type="button">🚀 Ingresar</button>
+    <button id="btnLogin" type="button">🎃 Ingresar 🎃</button>
     <p id="mensajeLogin"></p>
-    <div class="login-footer">Servicio Técnico Arévalo © 2026</div>
+    <div class="login-footer">🕸️ Servicio Técnico Arévalo © 2026 · Feliz Halloween 🕸️</div>
   </div>
 </div>
 
