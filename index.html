@@ -9879,25 +9879,64 @@ gtag('config','G-JN1PLW9E98');
 
 <!-- ===== SALIDA DE DESCARGA - SERVICIO TECNICO AREVALO ===== -->
 <style>
-#arevaloSalida{position:fixed;inset:0;z-index:999999;display:none;align-items:center;justify-content:center;background:#000;padding:20px;font-family:Arial,Helvetica,sans-serif}
-#arevaloSalida .salida-box{width:min(500px,100%);background:#fff;border-radius:18px;padding:30px 24px;text-align:center;box-shadow:0 20px 70px rgba(0,0,0,.65)}
-#arevaloSalida h1{margin:0;color:#c40000;font-size:34px;font-weight:800}
-#arevaloSalida .sub{margin:8px 0 22px;color:#c40000;font-size:17px;font-weight:700}
-#arevaloSalida .circle{width:94px;height:94px;margin:0 auto 20px;border:10px solid #e5e5e5;border-top-color:#d00000;border-right-color:#d00000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:27px;font-weight:800;color:#111;box-sizing:border-box}
-#arevaloSalida .msg{font-size:17px;color:#333;margin-bottom:20px}
-#arevaloSalida .msg b{color:#c40000}
-#arevaloSalida .social{display:flex;justify-content:center;gap:12px;margin:10px 0 22px}
-#arevaloSalida .social span{width:40px;height:40px;border:1px solid #ddd;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:19px;color:#333;background:#fafafa}
-#arevaloSalida .tip-title{color:#c40000;font-weight:800;margin-bottom:10px}
-#arevaloSalida .tip{border:1px solid #ddd;border-left:5px solid #c40000;border-radius:14px;background:#fafafa;padding:16px;color:#333;line-height:1.45}
-#arevaloSalida .tip strong{display:block;font-size:18px;margin-bottom:7px;color:#111}
-#arevaloSalida .note{margin-top:16px;color:#888;font-size:13px}
+#arevaloSalida{
+  position:fixed;inset:0;z-index:999999;display:none;align-items:center;justify-content:center;
+  overflow:hidden;background:#100e13;padding:20px;font-family:Arial,Helvetica,sans-serif;color:#fff;
+}
+#arevaloSalida:before{
+  content:"🌙";position:absolute;right:10%;top:5%;font-size:clamp(75px,12vw,145px);
+  opacity:.9;filter:sepia(.35);transform:rotate(-18deg);pointer-events:none;
+}
+#arevaloSalida:after{
+  content:"🦇     🦇";position:absolute;left:10%;top:16%;font-size:clamp(22px,3vw,38px);
+  color:#4b3a4d;opacity:.75;white-space:pre;pointer-events:none;
+}
+#arevaloSalida .salida-box{
+  position:relative;z-index:1;width:min(494px,100%);background:#211d25;
+  border:1px solid #51404f;border-top:2px solid #ff9d24;border-radius:19px;
+  padding:27px 24px 23px;text-align:center;box-shadow:0 20px 70px rgba(0,0,0,.45);
+}
+#arevaloSalida .salida-box:before{
+  content:"🦇";position:absolute;left:-18%;top:8%;font-size:27px;opacity:.35;pointer-events:none;
+}
+#arevaloSalida .salida-box:after{
+  content:"🦇";position:absolute;right:-18%;top:20%;font-size:25px;opacity:.35;pointer-events:none;
+}
+#arevaloSalida h1{margin:5px 0 7px;color:#ffd078;font-size:clamp(27px,4vw,35px);font-weight:900;letter-spacing:.4px}
+#arevaloSalida .pumpkin{font-size:53px;line-height:1.1;margin-bottom:8px}
+#arevaloSalida .sub{margin:0 0 24px;color:#c9bdc8;font-size:16px;font-weight:700;line-height:1.5}
+#arevaloSalida .sub strong{color:#ff9d24}
+#arevaloSalida .circle{
+  width:100px;height:100px;margin:0 auto 27px;border:9px solid #463947;border-top-color:#ff9d24;
+  border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:27px;
+  font-weight:800;color:#fff;box-sizing:border-box;
+}
+#arevaloSalida .msg{font-size:15px;color:#c9bdc8;margin-bottom:18px}
+#arevaloSalida .msg b{color:#ffd078}
+#arevaloSalida .social{display:flex;justify-content:center;gap:11px;margin:10px 0 22px}
+#arevaloSalida .social span{
+  width:40px;height:40px;border:1px solid #554253;border-radius:11px;display:flex;
+  align-items:center;justify-content:center;font-size:19px;color:#f5edf5;background:#2b242e;
+}
+#arevaloSalida .tip-title{color:#ffd078;font-weight:900;margin-bottom:10px;font-size:15px}
+#arevaloSalida .tip{
+  border:1px solid #51404f;border-left:5px solid #ff9d24;border-radius:13px;
+  background:#2b242e;padding:15px;color:#c9bdc8;line-height:1.45;font-size:15px;
+}
+#arevaloSalida .tip strong{display:block;font-size:17px;margin-bottom:7px;color:#fff}
+#arevaloSalida .note{margin-top:16px;color:#aaa0ad;font-size:12px}
+@media(max-width:520px){
+  #arevaloSalida{padding:14px}
+  #arevaloSalida .salida-box{padding:24px 17px 20px}
+  #arevaloSalida:before{right:1%;top:1%;font-size:75px}
+}
 </style>
 
 <div id="arevaloSalida" aria-live="polite">
   <div class="salida-box">
+    <div class="pumpkin" aria-hidden="true">🎃</div>
     <h1>SERVICIO TECNICO "AREVALO"</h1>
-    <div class="sub">Preparando tu descarga...</div>
+    <div class="sub"><strong>¡Feliz Halloween!</strong> Estamos preparando tu descarga</div>
     <div class="circle"><span id="arevaloCuenta">18</span></div>
     <div class="msg">Serás redirigido en <b><span id="arevaloSegundos">18</span> segundos...</b></div>
     <div class="social" aria-hidden="true">
@@ -9905,10 +9944,10 @@ gtag('config','G-JN1PLW9E98');
     </div>
     <div class="tip-title">TÉRMINO MIENTRAS ESPERAS</div>
     <div class="tip">
-      <strong>💻 ¿Sabías que puedes mantener tu PC más rápida?</strong>
+      <strong>¿Sabías que puedes mantener tu PC más rápida?</strong>
       Evita instalar programas innecesarios y mantén Windows y tus controladores actualizados.
     </div>
-    <div class="note">Servicio Técnico "Arevalo" · Sullana - Perú</div>
+    <div class="note">⚠ Servicio Técnico "Arevalo" no controla el contenido externo</div>
   </div>
 </div>
 
