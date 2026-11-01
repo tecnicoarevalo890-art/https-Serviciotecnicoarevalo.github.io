@@ -9898,77 +9898,144 @@ gtag('config','G-JN1PLW9E98');
 
 
 
-<!-- ===== SALIDA DE DESCARGA - SERVICIO TECNICO AREVALO ===== -->
+<!-- ===== SALIDA DE DESCARGA NAVIDEÑA - SERVICIO TECNICO AREVALO ===== -->
 <style>
 #arevaloSalida{
   position:fixed;inset:0;z-index:999999;display:none;align-items:center;justify-content:center;
-  overflow:hidden;background:#100e13;padding:20px;font-family:Arial,Helvetica,sans-serif;color:#fff;
+  overflow:hidden;background:radial-gradient(ellipse at 50% 35%,#124b72 0%,#082746 48%,#031326 100%);
+  padding:18px;font-family:Arial,Helvetica,sans-serif;color:#fff;isolation:isolate;
 }
 #arevaloSalida:before{
-  content:"🌙";position:absolute;right:10%;top:5%;font-size:clamp(75px,12vw,145px);
-  opacity:.9;filter:sepia(.35);transform:rotate(-18deg);pointer-events:none;
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.7;
+  background-image:radial-gradient(2px 2px at 10% 20%,#fff 98%,transparent),
+    radial-gradient(2px 2px at 80% 12%,#fff 98%,transparent),
+    radial-gradient(2px 2px at 35% 72%,#d8f5ff 98%,transparent),
+    radial-gradient(3px 3px at 68% 85%,#fff 98%,transparent);
+  background-size:170px 150px;animation:arevaloTwinkle 3s ease-in-out infinite alternate;
 }
-#arevaloSalida:after{
-  content:"🦇     🦇";position:absolute;left:10%;top:16%;font-size:clamp(22px,3vw,38px);
-  color:#4b3a4d;opacity:.75;white-space:pre;pointer-events:none;
+#arevaloSalida .navidad-luces{
+  position:absolute;top:0;left:0;right:0;height:62px;display:flex;justify-content:space-around;
+  align-items:flex-start;padding:0 12px;pointer-events:none;border-top:5px solid #174b2d;
 }
+#arevaloSalida .navidad-luces:before{
+  content:"";position:absolute;left:-2%;right:-2%;top:-8px;height:48px;
+  border-bottom:3px solid #1c542f;border-radius:0 0 50% 50%;
+}
+#arevaloSalida .navidad-luces i{
+  position:relative;z-index:1;width:13px;height:21px;margin-top:18px;border-radius:45% 45% 55% 55%;
+  background:#ff4242;box-shadow:0 0 12px currentColor,0 0 25px currentColor;
+  animation:arevaloBlink 1.2s infinite alternate;
+}
+#arevaloSalida .navidad-luces i:nth-child(4n+2){background:#ffe36a;color:#ffe36a;animation-delay:.3s}
+#arevaloSalida .navidad-luces i:nth-child(4n+3){background:#5eeaff;color:#5eeaff;animation-delay:.6s}
+#arevaloSalida .navidad-luces i:nth-child(4n){background:#7cff8b;color:#7cff8b;animation-delay:.9s}
+#arevaloSalida .navidad-luces i:nth-child(4n+1){color:#ff4242}
+#arevaloSalida .navidad-arbol{
+  position:absolute;bottom:3%;font-size:clamp(85px,15vw,175px);line-height:1;
+  filter:drop-shadow(0 0 18px rgba(20,255,150,.22));transform-origin:bottom center;
+  animation:arevaloTree 4s ease-in-out infinite;
+}
+#arevaloSalida .arbol-izq{left:2%}
+#arevaloSalida .arbol-der{right:2%;animation-delay:-2s}
+#arevaloSalida .navidad-regalo{position:absolute;bottom:5%;font-size:clamp(30px,5vw,55px);animation:arevaloFloat 3s ease-in-out infinite}
+#arevaloSalida .regalo-izq{left:19%}
+#arevaloSalida .regalo-der{right:19%;animation-delay:1.5s}
+#arevaloSalida .navidad-copo{position:absolute;top:-35px;color:#fff;font-size:22px;opacity:.8;pointer-events:none;
+  animation:arevaloSnow linear infinite}
+#arevaloSalida .c1{left:12%;animation-duration:9s}
+#arevaloSalida .c2{left:29%;animation-duration:12s;animation-delay:2s;font-size:15px}
+#arevaloSalida .c3{left:72%;animation-duration:10s;animation-delay:1s}
+#arevaloSalida .c4{left:88%;animation-duration:13s;animation-delay:3s;font-size:17px}
 #arevaloSalida .salida-box{
-  position:relative;z-index:1;width:min(494px,100%);background:#211d25;
-  border:1px solid #51404f;border-top:2px solid #ff9d24;border-radius:19px;
-  padding:27px 24px 23px;text-align:center;box-shadow:0 20px 70px rgba(0,0,0,.45);
+  position:relative;z-index:2;width:min(500px,100%);box-sizing:border-box;text-align:center;
+  padding:34px 30px 27px;border:2px solid #d7b45c;border-radius:25px;
+  background:linear-gradient(155deg,rgba(5,35,55,.97),rgba(8,20,42,.97) 62%,rgba(24,35,43,.97));
+  box-shadow:0 0 0 5px rgba(255,255,255,.06),0 20px 75px rgba(0,0,0,.58),0 0 35px rgba(255,190,70,.2);
 }
 #arevaloSalida .salida-box:before{
-  content:"🦇";position:absolute;left:-18%;top:8%;font-size:27px;opacity:.35;pointer-events:none;
+  content:"🎄  ✨  🎄";display:block;color:#ffe6a1;font-size:25px;letter-spacing:9px;margin-bottom:12px;
+  animation:arevaloFloat 3s ease-in-out infinite;
 }
 #arevaloSalida .salida-box:after{
-  content:"🦇";position:absolute;right:-18%;top:20%;font-size:25px;opacity:.35;pointer-events:none;
+  content:"";position:absolute;left:12px;right:12px;top:12px;bottom:12px;border:1px solid rgba(255,220,130,.25);
+  border-radius:17px;pointer-events:none;
 }
-#arevaloSalida h1{margin:5px 0 7px;color:#ffd078;font-size:clamp(27px,4vw,35px);font-weight:900;letter-spacing:.4px}
-#arevaloSalida .pumpkin{font-size:53px;line-height:1.1;margin-bottom:8px}
-#arevaloSalida .sub{margin:0 0 24px;color:#c9bdc8;font-size:16px;font-weight:700;line-height:1.5}
-#arevaloSalida .sub strong{color:#ff9d24}
+#arevaloSalida h1{margin:0 0 8px;color:#fff;font-size:clamp(27px,5vw,37px);font-weight:900;line-height:1.15;
+  text-shadow:0 3px 0 #19354b,0 0 16px rgba(255,220,130,.45)}
+#arevaloSalida .navidad-nombre{display:block;color:#ffd66f;font-size:clamp(34px,6vw,48px);font-weight:1000;
+  letter-spacing:1px;text-shadow:0 3px 0 #8c451a,0 0 20px rgba(255,190,50,.5);margin-bottom:9px}
+#arevaloSalida .sub{display:inline-block;margin:0 auto 20px;padding:8px 19px;border-radius:30px;
+  color:#fff;font-size:18px;font-weight:800;background:linear-gradient(90deg,#a51f2b,#d83b39,#a51f2b);
+  border:1px solid #f3c76b;box-shadow:0 5px 18px rgba(0,0,0,.25)}
+#arevaloSalida .sub strong{color:#fff4c5}
 #arevaloSalida .circle{
-  width:100px;height:100px;margin:0 auto 27px;border:9px solid #463947;border-top-color:#ff9d24;
-  border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:27px;
-  font-weight:800;color:#fff;box-sizing:border-box;
+  width:108px;height:108px;margin:0 auto 16px;border:7px solid rgba(255,255,255,.16);
+  border-top-color:#f9d36b;border-right-color:#e84c45;border-radius:50%;display:flex;
+  align-items:center;justify-content:center;font-size:35px;font-weight:900;color:#fff;
+  box-shadow:0 0 22px rgba(255,213,105,.25);animation:arevaloSpin 7s linear infinite;
 }
-#arevaloSalida .msg{font-size:15px;color:#c9bdc8;margin-bottom:18px}
-#arevaloSalida .msg b{color:#ffd078}
-#arevaloSalida .social{display:flex;justify-content:center;gap:11px;margin:10px 0 22px}
+#arevaloSalida .circle span{animation:arevaloSpin 7s linear infinite reverse}
+#arevaloSalida .msg{font-size:15px;color:#e3edf7;margin-bottom:17px}
+#arevaloSalida .msg b{color:#ffe07c}
+#arevaloSalida .social{display:flex;justify-content:center;gap:10px;margin:10px 0 18px}
 #arevaloSalida .social span{
-  width:40px;height:40px;border:1px solid #554253;border-radius:11px;display:flex;
-  align-items:center;justify-content:center;font-size:19px;color:#f5edf5;background:#2b242e;
+  width:39px;height:39px;border:1px solid rgba(255,220,130,.6);border-radius:11px;display:flex;
+  align-items:center;justify-content:center;font-size:18px;color:#fff;background:rgba(255,255,255,.08);
+  box-shadow:0 0 12px rgba(255,210,100,.12)
 }
-#arevaloSalida .tip-title{color:#ffd078;font-weight:900;margin-bottom:10px;font-size:15px}
+#arevaloSalida .tip-title{color:#ffe08a;font-weight:900;margin-bottom:8px;font-size:15px}
 #arevaloSalida .tip{
-  border:1px solid #51404f;border-left:5px solid #ff9d24;border-radius:13px;
-  background:#2b242e;padding:15px;color:#c9bdc8;line-height:1.45;font-size:15px;
+  border:1px solid rgba(255,220,130,.5);border-left:5px solid #d93b3b;border-radius:13px;
+  background:rgba(255,255,255,.08);padding:13px;color:#e8edf5;line-height:1.45;font-size:14px
 }
-#arevaloSalida .tip strong{display:block;font-size:17px;margin-bottom:7px;color:#fff}
-#arevaloSalida .note{margin-top:16px;color:#aaa0ad;font-size:12px}
-@media(max-width:520px){
-  #arevaloSalida{padding:14px}
-  #arevaloSalida .salida-box{padding:24px 17px 20px}
-  #arevaloSalida:before{right:1%;top:1%;font-size:75px}
+#arevaloSalida .tip strong{display:block;font-size:16px;margin-bottom:5px;color:#fff}
+#arevaloSalida .note{margin-top:13px;color:#c3d3e3;font-size:11px}
+@keyframes arevaloBlink{from{opacity:.45;filter:brightness(.75)}to{opacity:1;filter:brightness(1.5)}}
+@keyframes arevaloTwinkle{from{opacity:.35}to{opacity:.9}}
+@keyframes arevaloTree{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+@keyframes arevaloFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes arevaloSnow{to{transform:translateY(110vh) translateX(35px) rotate(360deg)}}
+@keyframes arevaloSpin{to{transform:rotate(360deg)}}
+@media(max-width:600px){
+  #arevaloSalida{padding:12px}
+  #arevaloSalida .salida-box{padding:28px 17px 21px}
+  #arevaloSalida .navidad-arbol{font-size:78px;opacity:.65}
+  #arevaloSalida .arbol-izq{left:-3%}
+  #arevaloSalida .arbol-der{right:-3%}
+  #arevaloSalida .navidad-regalo{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  #arevaloSalida *,#arevaloSalida *:before,#arevaloSalida *:after{animation-duration:.01ms!important;animation-iteration-count:1!important}
 }
 </style>
 
 <div id="arevaloSalida" aria-live="polite">
+  <div class="navidad-luces" aria-hidden="true">
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="navidad-arbol arbol-izq" aria-hidden="true">🎄</div>
+  <div class="navidad-arbol arbol-der" aria-hidden="true">🎄</div>
+  <div class="navidad-regalo regalo-izq" aria-hidden="true">🎁</div>
+  <div class="navidad-regalo regalo-der" aria-hidden="true">🎁</div>
+  <span class="navidad-copo c1" aria-hidden="true">❄</span>
+  <span class="navidad-copo c2" aria-hidden="true">❄</span>
+  <span class="navidad-copo c3" aria-hidden="true">❄</span>
+  <span class="navidad-copo c4" aria-hidden="true">❄</span>
   <div class="salida-box">
-    <div class="pumpkin" aria-hidden="true">🎃</div>
-    <h1>SERVICIO TECNICO "AREVALO"</h1>
-    <div class="sub"><strong>¡Feliz Halloween!</strong> Estamos preparando tu descarga</div>
-    <div class="circle"><span id="arevaloCuenta">18</span></div>
-    <div class="msg">Serás redirigido en <b><span id="arevaloSegundos">18</span> segundos...</b></div>
+    <h1>SERVICIO TÉCNICO</h1>
+    <span class="navidad-nombre">"AREVALO"</span>
+    <div class="sub"><strong>🎅 ¡Felices Fiestas 2026! 🎄</strong></div>
+    <div class="circle"><span id="arevaloCuenta">20</span></div>
+    <div class="msg">Tu descarga estará lista en <b><span id="arevaloSegundos">20</span> segundos...</b></div>
     <div class="social" aria-hidden="true">
       <span>f</span><span>✈</span><span>▶</span><span>𝕏</span>
     </div>
-    <div class="tip-title">TÉRMINO MIENTRAS ESPERAS</div>
+    <div class="tip-title">✨ ¡DISFRUTA LA NAVIDAD! ✨</div>
     <div class="tip">
-      <strong>¿Sabías que puedes mantener tu PC más rápida?</strong>
-      Evita instalar programas innecesarios y mantén Windows y tus controladores actualizados.
+      <strong>Gracias por confiar en Servicio Técnico Arévalo</strong>
+      Estamos preparando tu descarga. ¡Que tengas unas felices fiestas y un próspero Año Nuevo!
     </div>
-    <div class="note">⚠ Servicio Técnico "Arevalo" no controla el contenido externo</div>
+    <div class="note">Servicio Técnico "Arevalo" · Sullana - Perú</div>
   </div>
 </div>
 
@@ -9985,7 +10052,7 @@ gtag('config','G-JN1PLW9E98');
     destino = url;
     salida.style.display = 'flex';
     document.body.style.overflow = 'hidden';
-    let n = 18;
+    let n = 20;
     cuenta.textContent = n;
     segundos.textContent = n;
     clearInterval(timer);
