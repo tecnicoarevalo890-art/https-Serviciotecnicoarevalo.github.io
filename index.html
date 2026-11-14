@@ -2073,6 +2073,30 @@ DRIVERS DE IMPRESORA EPSON BY TECNICO AREVALO
 
 <div>
 </div>
+<style>
+/* Buscador independiente para servicios y productos: no modifica el buscador de programas */
+#busquedaServiciosWrap{
+  max-width:980px;margin:22px auto;padding:16px 18px;
+  background:rgba(20,20,20,.96);border:1px solid var(--accent,#a40000);
+  border-radius:13px;box-shadow:0 5px 18px rgba(0,0,0,.22);
+}
+#busquedaServiciosWrap label{display:block;color:inherit;font-weight:700;margin:0 0 9px}
+#busquedaServicios{
+  display:block;width:100%;box-sizing:border-box;padding:14px 16px;
+  border:2px solid var(--accent,#a40000);border-radius:9px;
+  background:#fff;color:#222;font-size:16px;outline:none;
+}
+#busquedaServicios:focus{box-shadow:0 0 0 3px var(--accent-glow,rgba(164,0,0,.2))}
+#resultadoServicios{min-height:18px;margin:9px 2px 0;font-size:13px;opacity:.8}
+#sinResultadosServicios{display:none;text-align:center;padding:18px;margin:10px auto;
+  border:1px dashed var(--accent,#a40000);border-radius:10px;max-width:700px}
+</style>
+<div id="busquedaServiciosWrap">
+  <label for="busquedaServicios">🔎 Buscar servicios y productos</label>
+  <input id="busquedaServicios" type="search" placeholder="Escribe el nombre de un servicio o producto..." autocomplete="off">
+  <div id="resultadoServicios" aria-live="polite">Escribe lo que necesitas para encontrar servicios y productos.</div>
+</div>
+<div id="sinResultadosServicios">No se encontraron servicios o productos con ese nombre.</div>
 <div class="card">
 <h3>FORMATEO DE PC Y LAPTOP + INSTALACION DE PROGRAMAS</h3>
 <img src="https://github.com/tecnicoarevalo890-art/https-Serviciotecnicoarevalo.github.io/blob/Main/Dise%C3%B1o%20sin%20t%C3%ADtulo.png?raw=true" width="120"/>
@@ -10274,6 +10298,77 @@ gtag('config','G-JN1PLW9E98');
 })();
 </script>
 
+
+
+<script>
+/* Buscador independiente de servicios y tarjetas de productos.
+   No modifica el buscador original #buscadorProgramas ni sus filtros. */
+(function(){
+  const input = document.getElementById('busquedaServicios');
+  const status = document.getElementById('resultadoServicios');
+  const empty = document.getElementById('sinResultadosServicios');
+  if(!input) return;
+
+  const servicios = [...document.querySelectorAll('#servicios .card')];
+  const tarjetasProgramas = [...document.querySelectorAll('#programas .card')];
+
+  // En productos, empezar desde la tarjeta FORMATEO DE PC y seguir con las demás.
+  const inicioProductos = tarjetasProgramas.findIndex(card =>
+    (card.querySelector('h3')?.textContent || '')
+      .toLocaleLowerCase('es')
+      .includes('formateo de pc y laptop')
+  );
+  const productos = inicioProductos >= 0
+    ? tarjetasProgramas.slice(inicioProductos)
+    : tarjetasProgramas;
+
+  // Evitar capturar tarjetas de otras zonas de la web.
+  const tarjetas = [...servicios, ...productos];
+
+  function normalizar(texto){
+    return (texto || '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g,'')
+      .toLocaleLowerCase('es')
+      .replace(/[+&]/g,' ')
+      .replace(/[^a-z0-9ñ\s.-]/g,' ')
+      .replace(/\s+/g,' ')
+      .trim();
+  }
+
+  function buscar(){
+    const consulta = normalizar(input.value);
+    const palabras = consulta.split(' ').filter(Boolean);
+    let visibles = 0;
+
+    tarjetas.forEach(card => {
+      const contenido = normalizar(card.innerText || card.textContent);
+      // Todas las palabras escritas deben aparecer en el contenido de la tarjeta.
+      const coincide = palabras.length === 0 || palabras.every(p => contenido.includes(p));
+      card.hidden = !coincide;
+      card.style.display = coincide ? '' : 'none';
+      if(coincide) visibles++;
+    });
+
+    status.textContent = consulta
+      ? visibles + (visibles === 1 ? ' resultado encontrado' : ' resultados encontrados')
+      : 'Busca servicios, Windows, Office, Autodesk, Safe y los demás productos.';
+    empty.style.display = visibles === 0 ? 'block' : 'none';
+  }
+
+  input.addEventListener('input', buscar);
+  input.addEventListener('search', buscar);
+
+  // Al borrar la consulta, volver a mostrar todas las tarjetas de este buscador.
+  input.addEventListener('keydown', e => {
+    if(e.key === 'Escape'){
+      input.value = '';
+      buscar();
+    }
+  });
+  buscar();
+})();
+</script>
 
 </body>
 </html>
